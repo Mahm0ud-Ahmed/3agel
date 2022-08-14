@@ -1,11 +1,13 @@
 import 'package:aagel/src/core/config/injector.dart';
 import 'package:flutter/material.dart';
 
+import 'main.reflectable.dart';
+
 
 
 void main() {
   initializeDependencies();
-  // initializeRef
+  initializeReflectable();
   runApp(const MyApp());
 }
 
