@@ -1,11 +1,11 @@
 
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:aagel/src/core/utils/constant_value.dart';
+import 'package:aagel/src/core/utils/constant.dart';
 
 part 'api_service.g.dart';
 
-@RestApi(baseUrl: ConstantValue.kBaseUrl)
+@RestApi(baseUrl: Constant.kBaseUrl)
 abstract class ApiService{
 
   factory ApiService(Dio dio, {String baseUrl}) = _ApiService;
