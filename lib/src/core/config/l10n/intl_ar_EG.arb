@@ -1,0 +1,6 @@
+{
+    "handle_error_status_connect_time_out":"خطأ غير متوقع",
+    "handle_error_message_connect_time_out":"تم فقد الاتصال بالسيرفر بشكل غير متوقع",
+    "handle_error_status_cancel":"إلغاء الطلب",
+    "handle_error_message_cancel":"تم إلغاء الطلب"
+}
