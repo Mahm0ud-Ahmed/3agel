@@ -1,72 +1,43 @@
 import 'package:aagel/src/core/config/injector.dart';
+import 'package:aagel/src/core/config/routes/app_route.dart';
+import 'package:aagel/src/core/services/setting_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'main.reflectable.dart';
+import 'src/core/config/l10n/generated/l10n.dart';
 
 
 
-void main() {
-  initializeDependencies();
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await initializeDependencies();
   initializeReflectable();
   runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key, required this.title}) : super(key: key);
-  final String title;
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
-
-  void _incrementCounter() {
-    setState(() {
-      _counter++;
-    });
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(widget.title),
-      ),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: <Widget>[
-            const Text(
-              'You have pushed the button this many times:',
-            ),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headline4,
-            ),
-          ],
-        ),
-      ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+    return AnimatedBuilder(
+      animation: Listenable.merge([SettingService()]),
+      builder: (context, child) => MaterialApp(
+        title: '3agel',
+        debugShowCheckedModeBanner: false,
+        theme: SettingService().myTheme, //Light Theme
+        darkTheme: SettingService().myTheme,
+        themeMode: SettingService().mode,
+        onGenerateRoute: AppRoute.generateRoute,
+        localizationsDelegates: const [
+          S.delegate,
+          AppLocalizationDelegate(),
+          GlobalWidgetsLocalizations.delegate,
+          GlobalMaterialLocalizations.delegate,
+          GlobalCupertinoLocalizations.delegate,
+        ],
+        supportedLocales: S.delegate.supportedLocales,
       ),
     );
   }
