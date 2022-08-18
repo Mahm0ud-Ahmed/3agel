@@ -7,8 +7,8 @@ import 'error_model.dart';
 
 class ErrorHandler{
 
-  static ErrorModel handleError(DioError error){
-    late ErrorModel errorModel;
+  static ErrorModel? handleError(DioError error){
+    ErrorModel? errorModel;
     switch (error.type) {
       case DioErrorType.connectTimeout:
       case DioErrorType.sendTimeout:
@@ -26,7 +26,7 @@ class ErrorHandler{
         );
         break;
       case DioErrorType.response:
-        if(error.response?.statusCode == HttpStatus.badRequest){
+        if(error.response?.statusCode != HttpStatus.notFound){
           errorModel = ErrorModel.fromJson(error.response?.data);
         }else if(error.response?.statusCode == HttpStatus.notFound){
           errorModel = ErrorModel(
