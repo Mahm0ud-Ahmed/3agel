@@ -5,8 +5,8 @@ class PaginationCriteria {
   int? total;
   
   PaginationCriteria({
-    this.pageNumber = 0,
-    this.pageSize = 10,
+    this.pageNumber = 1,
+    this.pageSize = 20,
     this.total,
   });
 
