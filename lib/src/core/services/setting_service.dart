@@ -1,6 +1,7 @@
 import 'package:aagel/src/core/services/service_interface.dart';
 import 'package:aagel/src/core/utils/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../config/injector.dart';
 import '../config/themes/dark_theme.dart';
@@ -28,6 +29,7 @@ class SettingService extends ChangeNotifier implements ServiceInterface{
     _theme.appColor;
     _theme.appStyle;
     setThemeData();
+    setSystemStatusDefaultColor();
 
     notifyListeners();
   }
@@ -48,6 +50,7 @@ class SettingService extends ChangeNotifier implements ServiceInterface{
     _theme.appColor;
     _theme.appStyle;
     setThemeData();
+    setSystemStatusDefaultColor();
     notifyListeners();
   }
 
@@ -73,6 +76,20 @@ class SettingService extends ChangeNotifier implements ServiceInterface{
       primarySwatch: _theme.primarySwatch,
       appBarTheme: AppBarTheme(color: _theme.primarySwatch),
       brightness: isLight ? Brightness.light : Brightness.dark,
+    );
+  }
+
+  void setSystemStatusDefaultColor() {
+    SystemChrome.setSystemUIOverlayStyle(
+      SystemUiOverlayStyle(
+        statusBarColor: _theme.appColor[0],
+        statusBarIconBrightness: isLight ? Brightness.light : Brightness.dark,
+        statusBarBrightness: isLight ? Brightness.dark : Brightness.light,
+
+        systemNavigationBarColor: _theme.primarySwatch,
+        systemNavigationBarDividerColor: isLight ? _theme.appColor[0] : _theme.appColor[2],
+        systemNavigationBarIconBrightness: Brightness.light,
+      )
     );
   }
 
