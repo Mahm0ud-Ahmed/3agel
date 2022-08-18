@@ -14,7 +14,6 @@ abstract class ApiService{
   Future<HttpResponse> getApiData({
     @Path('endpoint') required String endpoint,
     @Query("q") String? querySearch,
-    @Query("apiKey") String? apiKey,
     @Query("sortBy") String? sortBy,
     @Query("language") String? language,
     @Query("sources") String? sources,
@@ -23,8 +22,9 @@ abstract class ApiService{
     @Query("to") String? to,
     @Query("country") String? country,
     @Query("category") String? category,
-    @Query("limit") String? pageSize,
-    @Query("skip") String? page,
+    @Query("pageSize") String? pageSize,
+    @Query("page") String? page,
+    @Query("apiKey") String? apiKey,
   });
 
   @GET('{endpoint}/{id}')

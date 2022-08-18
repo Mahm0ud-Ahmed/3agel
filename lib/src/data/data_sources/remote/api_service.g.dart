@@ -10,7 +10,7 @@ part of 'api_service.dart';
 
 class _ApiService implements ApiService {
   _ApiService(this._dio, {this.baseUrl}) {
-    baseUrl ??= 'https://dummyjson.com/';
+    baseUrl ??= 'https://newsapi.org/v2/';
   }
 
   final Dio _dio;
@@ -21,7 +21,6 @@ class _ApiService implements ApiService {
   Future<HttpResponse<dynamic>> getApiData(
       {required endpoint,
       querySearch,
-      apiKey,
       sortBy,
       language,
       sources,
@@ -31,11 +30,11 @@ class _ApiService implements ApiService {
       country,
       category,
       pageSize,
-      page}) async {
+      page,
+      apiKey}) async {
     const _extra = <String, dynamic>{};
     final queryParameters = <String, dynamic>{
       r'q': querySearch,
-      r'apiKey': apiKey,
       r'sortBy': sortBy,
       r'language': language,
       r'sources': sources,
@@ -44,8 +43,9 @@ class _ApiService implements ApiService {
       r'to': to,
       r'country': country,
       r'category': category,
-      r'limit': pageSize,
-      r'skip': page
+      r'pageSize': pageSize,
+      r'page': page,
+      r'apiKey': apiKey
     };
     queryParameters.removeWhere((k, v) => v == null);
     final _headers = <String, dynamic>{};

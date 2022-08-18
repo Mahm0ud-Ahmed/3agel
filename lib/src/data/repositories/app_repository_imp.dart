@@ -11,11 +11,19 @@ class AppRepositoryImp extends IAppRepository{
   @override
   Future<HttpResponse> getAllData(QueryParams params) async {
     return await _apiService.getApiData(
-      // apiKey: params.apiKey,
+      apiKey: params.apiKey,
       querySearch: params.queryWord,
-      endpoint: params.endpoint,
+      endpoint: params.endpoint!,
       page: params.page.toString(),
       pageSize: params.pageSize.toString(),
+      category: params.category,
+      country: params.country,
+      from: params.from,
+      to: params.to,
+      language: params.language,
+      searchIn: params.searchIn,
+      sortBy: params.sortBy,
+      sources: params.sources,
     );
   }
   
@@ -24,7 +32,7 @@ class AppRepositoryImp extends IAppRepository{
     return await _apiService.getApiDataByPath(
       // apiKey: params.apiKey,
       querySearch: params.queryWord,
-      endpoint: params.endpoint,
+      endpoint: params.endpoint!,
       pathId: params.pathId!,
     );
   }
