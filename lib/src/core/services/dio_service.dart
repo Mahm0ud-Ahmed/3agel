@@ -10,17 +10,17 @@ class DioService implements ServiceInterface{
   String get name => "Api";
 
   @override
-  Future initialize() async {
+  Future<Dio> initialize() async {
     _dio = Dio(_baseOptions());
     if(!kReleaseMode){
       _dio.interceptors.add(
         LogInterceptor(
-          error: false,
-          request: false,
-          requestHeader: false,
-          requestBody: false,
+          error: true,
+          request: true,
+          requestHeader: true,
+          requestBody: true,
           responseHeader: true,
-          responseBody: false,
+          responseBody: true,
         )
       );
     }
