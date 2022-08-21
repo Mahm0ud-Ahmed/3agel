@@ -23,6 +23,7 @@ class LightTheme implements ITheme{
       /* index = 4 */    const Color(0xFFFF6962),
       /* index = 5 */    const Color(0xFFFF7872),
       /* index = 6 */    const Color(0xFFF4F6F9),
+      /* index = 7 */    const Color(0xFF1A1B22),
     ];
   }
 

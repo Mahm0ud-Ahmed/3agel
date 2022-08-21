@@ -67,10 +67,18 @@ class ThemeManager extends ChangeNotifier{
 
   void setThemeData() {
     _themeData = ThemeData(
-      scaffoldBackgroundColor: _theme.color[0],
-      primarySwatch: _theme.primarySwatch,
-      appBarTheme: AppBarTheme(color: _theme.primarySwatch),
-      brightness: isLight ? Brightness.light : Brightness.dark,
+    primarySwatch: _theme.primarySwatch, //MaterialColor(color(1).value, {100: color(1)}),
+    primaryColor: _theme.color[0],
+    scaffoldBackgroundColor: _theme.color[0],
+    hintColor: _theme.color[0],
+    primaryColorDark: _theme.color[7],
+      appBarTheme: AppBarTheme(
+      backgroundColor: _theme.color[0],
+      foregroundColor: _theme.color[7],
+    ),
+    brightness: isLight ? Brightness.light : Brightness.dark,
+    fontFamily: Typography.whiteMountainView.displayLarge?.fontFamily,
+    textTheme: isLight ? Typography.whiteMountainView : Typography.blackMountainView
     );
   }
 
@@ -78,11 +86,11 @@ class ThemeManager extends ChangeNotifier{
     SystemChrome.setSystemUIOverlayStyle(
       SystemUiOverlayStyle(
         statusBarColor: _theme.appColor[0],
-        statusBarIconBrightness: isLight ? Brightness.light : Brightness.dark,
+        statusBarIconBrightness: isLight ? Brightness.dark : Brightness.light,
         statusBarBrightness: isLight ? Brightness.dark : Brightness.light,
 
         systemNavigationBarColor: _theme.primarySwatch,
-        systemNavigationBarDividerColor: isLight ? _theme.appColor[0] : _theme.appColor[2],
+        systemNavigationBarDividerColor: isLight ? _theme.appColor[0] : _theme.appColor[7],
         systemNavigationBarIconBrightness: Brightness.light,
       )
     );

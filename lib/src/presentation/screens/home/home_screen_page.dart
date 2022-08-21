@@ -27,29 +27,31 @@ class _HomeScreenPageState extends State<HomeScreenPage> {
     return BlocProvider(
       create: (context) => ApiDataBloc(),
       child: Scaffold(
-        appBar: AppBar(),
-        body: BlocBuilder(
-          bloc: bloc,
-          builder: (context, state) {
-            /* if(state is ApiDataLoaded<ApiPaginationModel<ArticleModel>>) {
-              return Center(
-              child: Text(state.data!.data!.length.toString()),
-                  
-                  /* PagedListView(
-                    pagingController: bloc.controller, 
-                    builderDelegate: PagedChildBuilderDelegate<ArticleModel> (
-                      itemBuilder: (context, item, index) {
-                        return Text(item.title.toString());
-                      },
-                    ),
-                  ) */
-                );
-            } */
-            return FloatingActionButton(onPressed: () async{
-          await StorageService().saveBool('mode', false);
-          ThemeManager().changeThemeMode(LightTheme());
-        });
-          },
+        // appBar: AppBar(),
+        body: SafeArea(
+          child: BlocBuilder(
+            bloc: bloc,
+            builder: (context, state) {
+              /* if(state is ApiDataLoaded<ApiPaginationModel<ArticleModel>>) {
+                return Center(
+                child: Text(state.data!.data!.length.toString()),
+                    
+                    /* PagedListView(
+                      pagingController: bloc.controller, 
+                      builderDelegate: PagedChildBuilderDelegate<ArticleModel> (
+                        itemBuilder: (context, item, index) {
+                          return Text(item.title.toString());
+                        },
+                      ),
+                    ) */
+                  );
+              } */
+              return FloatingActionButton(onPressed: () async{
+            await StorageService().saveBool('mode', false);
+            ThemeManager().changeThemeMode(LightTheme());
+          });
+            },
+          ),
         ),
         floatingActionButton: FloatingActionButton(onPressed: () async{
           await StorageService().saveBool('mode', true);
