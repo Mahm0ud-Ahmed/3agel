@@ -53,7 +53,7 @@ flutter_intl:
   output_dir: lib/src/core/config/l10n/generated
 
 flutter_gen:
-  output: lib/assets/ # Optional (default: lib/gen/)
+  output: lib/src/core/config/assets/ # Optional (default: lib/gen/)
   line_length: 120 # Optional (default: 80)
 
   # Optional
