@@ -89,6 +89,16 @@ class S {
       args: [],
     );
   }
+
+  /// `3agel`
+  String get app_bar_title {
+    return Intl.message(
+      '3agel',
+      name: 'app_bar_title',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

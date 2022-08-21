@@ -22,6 +22,7 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "app_bar_title": MessageLookupByLibrary.simpleMessage("عاجل"),
         "handle_error_message_cancel":
             MessageLookupByLibrary.simpleMessage("تم إلغاء الطلب"),
         "handle_error_message_connect_time_out":

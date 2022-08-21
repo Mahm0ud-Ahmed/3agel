@@ -2,5 +2,7 @@
     "handle_error_status_connect_time_out":"Un-Expected Error",
     "handle_error_message_connect_time_out":"The server connection was unexpectedly lost",
     "handle_error_status_cancel":"Cancel Request",
-    "handle_error_message_cancel":"Canceled Request"
+    "handle_error_message_cancel":"Canceled Request",
+
+    "app_bar_title": "3agel"
 }

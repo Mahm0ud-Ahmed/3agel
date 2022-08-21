@@ -63,18 +63,20 @@ class ThemeManager extends ChangeNotifier{
 
   ThemeMode get mode => _mode;
 
+  ITheme get themes => _theme;
+
   bool get isLight => mode == ThemeMode.light ? true : false;
 
   void setThemeData() {
     _themeData = ThemeData(
-    primarySwatch: _theme.primarySwatch, //MaterialColor(color(1).value, {100: color(1)}),
+    primarySwatch: _theme.primarySwatch, 
     primaryColor: _theme.color[0],
     scaffoldBackgroundColor: _theme.color[0],
     hintColor: _theme.color[0],
-    primaryColorDark: _theme.color[7],
+    primaryColorDark: _theme.color[6],
       appBarTheme: AppBarTheme(
       backgroundColor: _theme.color[0],
-      foregroundColor: _theme.color[7],
+      foregroundColor: _theme.color[6],
     ),
     brightness: isLight ? Brightness.light : Brightness.dark,
     fontFamily: Typography.whiteMountainView.displayLarge?.fontFamily,
@@ -90,7 +92,7 @@ class ThemeManager extends ChangeNotifier{
         statusBarBrightness: isLight ? Brightness.dark : Brightness.light,
 
         systemNavigationBarColor: _theme.primarySwatch,
-        systemNavigationBarDividerColor: isLight ? _theme.appColor[0] : _theme.appColor[7],
+        systemNavigationBarDividerColor: isLight ? _theme.appColor[0] : _theme.appColor[6],
         systemNavigationBarIconBrightness: Brightness.light,
       )
     );

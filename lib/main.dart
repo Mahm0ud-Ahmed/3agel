@@ -30,6 +30,7 @@ class MyApp extends StatelessWidget {
         darkTheme: ThemeManager().myTheme,
         themeMode: ThemeManager().mode,
         onGenerateRoute: AppRoute.generateRoute,
+        locale: const Locale('en'),
         localizationsDelegates: const [
           S.delegate,
           AppLocalizationDelegate(),

@@ -8,9 +8,9 @@ import 'package:aagel/src/core/utils/pagination_criteria.dart';
 import 'package:aagel/src/core/utils/query_params.dart';
 import 'package:aagel/src/domain/use_cases/get_pagination_data_use_case.dart';
 
-import '../../core/config/injector.dart';
-import '../../data/models/api_pagination_model.dart';
-import '../../domain/use_cases/get_data_by_path_use_case.dart';
+import '../../../core/config/injector.dart';
+import '../../../data/models/api_pagination_model.dart';
+import '../../../domain/use_cases/get_data_by_path_use_case.dart';
 
 part 'api_data_event.dart';
 part 'api_data_state.dart';

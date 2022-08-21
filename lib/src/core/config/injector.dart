@@ -2,9 +2,9 @@ import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:aagel/src/data/data_sources/remote/api_service.dart';
 import 'package:aagel/src/data/repositories/app_repository_imp.dart';
-import 'package:aagel/src/presentation/blocs/api_data_bloc.dart';
 
 import '../../domain/repositories/i_app_repository.dart';
+import '../../presentation/controllers/data_bloc/api_data_bloc.dart';
 import '../services/dio_service.dart';
 import '../services/setting_service.dart';
 import '../services/storage_service.dart';
