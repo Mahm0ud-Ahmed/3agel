@@ -80,7 +80,7 @@ class ThemeManager extends ChangeNotifier{
     ),
     brightness: isLight ? Brightness.light : Brightness.dark,
     fontFamily: Typography.whiteMountainView.displayLarge?.fontFamily,
-    textTheme: isLight ? Typography.whiteMountainView : Typography.blackMountainView
+    textTheme: !isLight ? Typography.whiteMountainView : Typography.blackMountainView
     );
   }
 
