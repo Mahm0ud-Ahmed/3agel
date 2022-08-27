@@ -1,21 +1,17 @@
 import 'package:flutter/material.dart';
+import 'widget/carousel_header_widget.dart';
 
-class LatestPage extends StatefulWidget {
+class LatestPage extends StatelessWidget {
   const LatestPage({super.key});
 
   @override
-  State<LatestPage> createState() => _LatestPageState();
-}
-
-class _LatestPageState extends State<LatestPage> {
-  // ApiDataBloc<ArticleModel> bloc = ApiDataBloc(query: QueryParams(category: 'general', pageSize: 5), maxResult: 5)..add(ApiDataPagination());
-  @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      color: Colors.red,
-      child: Text('Bookmark')
+    return SingleChildScrollView(
+      child: Column(
+        children: [
+          CarouselHeaderWidget(),
+        ],
+      ),
     );
 
   }

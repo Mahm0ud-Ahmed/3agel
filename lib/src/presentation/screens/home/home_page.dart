@@ -13,15 +13,15 @@ import '../../widgets/my_app_bar_widget.dart';
 // ignore: must_be_immutable
 class HomePage extends StatelessWidget {
 
-  final List<Widget> pages = const <Widget>[
+  final List<Widget> pages = <Widget>[
     LatestPage(),
-    SearchPage(),
-    BookmarkPage(),
-    NewsPage(),
-    ProfilePage()
+    const SearchPage(),
+    const BookmarkPage(),
+    const NewsPage(),
+    const ProfilePage()
   ];
 
-  const HomePage({
+  HomePage({
     super.key,
   });
 
