@@ -109,6 +109,16 @@ class S {
       args: [],
     );
   }
+
+  /// `Source:`
+  String get category_item_source {
+    return Intl.message(
+      'Source:',
+      name: 'category_item_source',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
