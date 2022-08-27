@@ -14,25 +14,27 @@ class BottomNavBarWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       bottom: true,
-      child: Container(
+      child: SizedBox(
         height: 80,
         width: double.infinity,
-        decoration: BoxDecoration(
-          color: ThemeManager().themes.appColor[0],
-          border: Border.all(
-            color: ThemeManager().themes.appColor[5],
-            width: 0.5,
+        child: DecoratedBox(
+          decoration: BoxDecoration(
+            color: ThemeManager().themes.appColor[0],
+            border: Border.all(
+              color: ThemeManager().themes.appColor[5],
+              width: 0.5,
+            ),
+            borderRadius: const BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
           ),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: List.generate(NavBarSection.values.length, (index){
-            return BottomNavBarItemWidget(
-              section: NavBarSection.values[index], 
-              index: index,
-            );
-          }),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: List.generate(NavBarSection.values.length, (index){
+              return BottomNavBarItemWidget(
+                section: NavBarSection.values[index], 
+                index: index,
+              );
+            }),
+          ),
         ),
       ),
     );

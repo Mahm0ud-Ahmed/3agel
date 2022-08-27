@@ -33,21 +33,23 @@ class _BottomNavBarItemWidgetState extends State<BottomNavBarItemWidget> {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: ()=> cubit?.setIndex(widget.index),
-      child: BlocBuilder<NavigationBarController, int>(
-        builder: (context, state) {
-          return CustomContainerWithIcon(
-            width: 48,
-            height: 40,
-            backgroundColor: state == widget.section.navData.keys.first ? ThemeManager().themes.appColor[3] : ThemeManager().themes.appColor[2],
-            child: Icon(
-              widget.section.navData.values.first,
-              size: 20,
-              color: state == widget.section.navData.keys.first ? ThemeManager().themes.appColor[0] : ThemeManager().themes.appColor[3],
-            )
-          );
-        },
+    return Flexible(
+      child: InkWell(
+        onTap: ()=> cubit?.setIndex(widget.index),
+        child: BlocBuilder<NavigationBarController, int>(
+          builder: (context, state) {
+            return CustomContainerWithIcon(
+              width: 48,
+              height: 40,
+              backgroundColor: state == widget.section.navData.keys.first ? ThemeManager().themes.appColor[3] : ThemeManager().themes.appColor[2],
+              child: Icon(
+                widget.section.navData.values.first,
+                size: 20,
+                color: state == widget.section.navData.keys.first ? ThemeManager().themes.appColor[0] : ThemeManager().themes.appColor[3],
+              )
+            );
+          },
+        ),
       ),
     );
   }
