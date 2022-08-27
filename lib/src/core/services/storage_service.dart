@@ -24,7 +24,7 @@ class StorageService extends ServiceInterface {
   }
 
   // Removing
-  Future<bool> clear(String key) async {
+  Future<bool> clear() async {
     return _preferences!.clear();
   }
 
