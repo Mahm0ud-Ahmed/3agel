@@ -4,5 +4,6 @@
     "handle_error_status_cancel":"Cancel Request",
     "handle_error_message_cancel":"Canceled Request",
 
-    "app_bar_title": "3agel"
+    "app_bar_title": "3agel",
+    "no_more_data_state": "No More Data!"
 }

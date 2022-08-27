@@ -31,6 +31,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "handle_error_status_cancel":
             MessageLookupByLibrary.simpleMessage("Cancel Request"),
         "handle_error_status_connect_time_out":
-            MessageLookupByLibrary.simpleMessage("Un-Expected Error")
+            MessageLookupByLibrary.simpleMessage("Un-Expected Error"),
+        "no_more_data_state":
+            MessageLookupByLibrary.simpleMessage("No More Data!")
       };
 }

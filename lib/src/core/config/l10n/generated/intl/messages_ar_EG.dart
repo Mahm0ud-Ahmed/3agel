@@ -31,6 +31,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "handle_error_status_cancel":
             MessageLookupByLibrary.simpleMessage("إلغاء الطلب"),
         "handle_error_status_connect_time_out":
-            MessageLookupByLibrary.simpleMessage("خطأ غير متوقع")
+            MessageLookupByLibrary.simpleMessage("خطأ غير متوقع"),
+        "no_more_data_state":
+            MessageLookupByLibrary.simpleMessage("لا يوجد بيانات")
       };
 }

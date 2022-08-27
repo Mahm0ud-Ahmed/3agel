@@ -99,6 +99,16 @@ class S {
       args: [],
     );
   }
+
+  /// `No More Data!`
+  String get no_more_data_state {
+    return Intl.message(
+      'No More Data!',
+      name: 'no_more_data_state',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

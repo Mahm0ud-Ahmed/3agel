@@ -4,5 +4,6 @@
     "handle_error_status_cancel":"إلغاء الطلب",
     "handle_error_message_cancel":"تم إلغاء الطلب",
 
-    "app_bar_title": "عاجل"
+    "app_bar_title": "عاجل",
+    "no_more_data_state": "لا يوجد بيانات"
 }
