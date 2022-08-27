@@ -10,7 +10,7 @@ import '../../../../../widgets/custom_shimmer_widget.dart';
 
 class CarouselHeaderWidget extends StatelessWidget {
   final ApiDataBloc<ArticleModel> carouselBloc = ApiDataBloc(
-      query: QueryParams(category: 'sport', pageSize: 5), maxResult: 5)
+      query: QueryParams(category: 'general', pageSize: 5), maxResult: 5)
     ..add(ApiDataPagination());
 
   CarouselHeaderWidget({super.key});
