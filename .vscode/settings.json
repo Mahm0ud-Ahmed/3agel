@@ -1,9 +1,17 @@
 {
+    "dart.previewFlutterOutline": true,
+    "flutter-files.menu.model": true,
+    "flutter-files.menu.provider": true,
+    "flutter-files.menu.repository": true,
+    "dart.previewFlutterStructuredErrors": true,
+    "dart.previewFlutterUiGuides": true,
+    "dart.previewFlutterUiGuidesCustomTracking": true,
     "cSpell.words": [
         "aagel",
         "agel",
         "Cupertino",
         "Reflectable",
         "usecase"
-    ]
+    ],
+    
 }
