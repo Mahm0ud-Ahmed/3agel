@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../config/themes/icon_broken.dart';
 
-enum NavBarSection{
+enum NavBarSection {
   home({0: IconBroken.Home}),
   search({1: IconBroken.Search}),
   bookmark({2: IconBroken.Bookmark}),
@@ -12,4 +12,18 @@ enum NavBarSection{
   final Map<int, IconData> navData;
 
   const NavBarSection(this.navData);
+}
+
+enum NewsCategory {
+  business('business'),
+  entertainment('entertainment'),
+  general('general'),
+  health('health'),
+  science('science'),
+  sports('sports'),
+  technology('technology');
+
+  final String category;
+
+  const NewsCategory(this.category);
 }
