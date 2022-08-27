@@ -1,4 +1,5 @@
 import 'package:aagel/src/data/models/article_model.dart';
+import 'package:aagel/src/presentation/widgets/custom_shimmer_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
@@ -27,6 +28,35 @@ class CategoryNewsList extends StatelessWidget {
         itemBuilder: (context, item, index) {
           return CategoryNewsItemWidget(
             article: item,
+          );
+        },
+        firstPageProgressIndicatorBuilder: (context) {
+          return Column(
+            children: List.generate(
+              10,
+              (index) => const CustomShimmerWidget(
+                height: 120,
+                width: 400,
+                radius: 16,
+              ),
+            ),
+          );
+        },
+        newPageErrorIndicatorBuilder: (context) {
+          return Column(
+            children: List.generate(
+              10,
+              (index) => const CustomShimmerWidget(
+                height: 120,
+                width: 400,
+                radius: 16,
+              ),
+            ),
+          );
+        },
+        firstPageErrorIndicatorBuilder: (context) {
+          return Center(
+            child: Text(articleBloc?.controller.error.message),
           );
         },
       ),
