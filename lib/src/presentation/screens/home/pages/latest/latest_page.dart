@@ -15,51 +15,68 @@ class LatestPage extends StatefulWidget {
 }
 
 class _LatestPageState extends State<LatestPage> {
+  late final ApiDataBloc<ArticleModel> _carouselBloc;
+  late final ApiDataBloc<ArticleModel> _articleBloc;
+  late final ValueNotifier<NewsCategory> _categoryListen;
+
   final QueryParams _query = QueryParams(
     category: NewsCategory.business.category,
     pageSize: 10,
   );
 
-  ApiDataBloc<ArticleModel>? _articleBloc;
-
-  late ValueNotifier<NewsCategory> categoryListen;
-
   @override
   void initState() {
     super.initState();
+    _carouselBloc = ApiDataBloc(
+        query: QueryParams(category: 'general', pageSize: 5), maxResult: 5)
+      ..add(ApiDataPagination());
+
     _articleBloc = ApiDataBloc(maxResult: 10, query: _query);
-    categoryListen = ValueNotifier(NewsCategory.business);
+    _categoryListen = ValueNotifier(NewsCategory.business);
   }
 
   @override
   Widget build(BuildContext context) {
-    return CustomScrollView(
-      physics: const BouncingScrollPhysics(),
-      slivers: [
-        SliverToBoxAdapter(
-          child: CarouselHeaderWidget(),
-        ),
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(vertical: 12),
-          sliver: SliverToBoxAdapter(
-            child: CategoryNewsWidget(
-              onTab: updateListeners,
-              categoryListen: categoryListen,
+    return RefreshIndicator(
+      onRefresh: () async {
+        _carouselBloc.add(ApiDataPagination());
+        _articleBloc.controller.refresh();
+      },
+      child: CustomScrollView(
+        physics: const BouncingScrollPhysics(),
+        slivers: [
+          SliverToBoxAdapter(
+            child: CarouselHeaderWidget(carouselBloc: _carouselBloc),
+          ),
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(vertical: 12),
+            sliver: SliverToBoxAdapter(
+              child: CategoryNewsWidget(
+                onTab: updateListeners,
+                categoryListen: _categoryListen,
+              ),
             ),
           ),
-        ),
-        SliverPadding(
-          padding: const EdgeInsets.symmetric(horizontal: 12),
-          sliver: CategoryNewsList(articleBloc: _articleBloc!),
-        ),
-        const SliverToBoxAdapter(child: SizedBox(height: 100,),),
-      ],
+          SliverPadding(
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            sliver: CategoryNewsList(articleBloc: _articleBloc),
+          ),
+          const SliverToBoxAdapter(
+            child: SizedBox(
+              height: 100,
+            ),
+          ),
+        ],
+      ),
     );
   }
 
   void updateListeners(NewsCategory newCategory) {
-    categoryListen.value = newCategory;
-    _query.category = newCategory.category;
-    _articleBloc?.controller.refresh();
+    if (newCategory != _categoryListen.value &&
+        newCategory.category != _query.category) {
+      _categoryListen.value = newCategory;
+      _query.category = newCategory.category;
+      _articleBloc.controller.refresh();
+    }
   }
 }
