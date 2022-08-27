@@ -21,14 +21,12 @@ class CustomContainerWithIcon extends StatelessWidget {
       height: height,
       width: width,
       child: DecoratedBox(
-        decoration: BoxDecoration(
-          color: backgroundColor ?? ThemeManager().themes.appColor[3],
-          borderRadius: BorderRadius.circular(8)
-        ),
-        child: Center(
-          child: child,
-        )
-      ),
+          decoration: BoxDecoration(
+              color: backgroundColor ?? ThemeManager().appColor[3],
+              borderRadius: BorderRadius.circular(8)),
+          child: Center(
+            child: child,
+          )),
     );
   }
 }

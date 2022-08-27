@@ -5,7 +5,6 @@ import '../../core/config/themes/theme_manager.dart';
 import '../../core/utils/enums.dart';
 
 class BottomNavBarWidget extends StatelessWidget {
-
   const BottomNavBarWidget({
     super.key,
   });
@@ -19,18 +18,19 @@ class BottomNavBarWidget extends StatelessWidget {
         width: double.infinity,
         child: DecoratedBox(
           decoration: BoxDecoration(
-            color: ThemeManager().themes.appColor[0],
+            color: ThemeManager().appColor[0],
             border: Border.all(
-              color: ThemeManager().themes.appColor[5],
+              color: ThemeManager().appColor[5],
               width: 0.5,
             ),
-            borderRadius: const BorderRadius.only(topLeft: Radius.circular(16), topRight: Radius.circular(16)),
+            borderRadius: const BorderRadius.only(
+                topLeft: Radius.circular(16), topRight: Radius.circular(16)),
           ),
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceAround,
-            children: List.generate(NavBarSection.values.length, (index){
+            children: List.generate(NavBarSection.values.length, (index) {
               return BottomNavBarItemWidget(
-                section: NavBarSection.values[index], 
+                section: NavBarSection.values[index],
                 index: index,
               );
             }),

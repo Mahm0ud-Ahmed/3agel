@@ -10,9 +10,12 @@ import '../../../../../../core/utils/query_params.dart';
 import '../../../../../../data/models/api_pagination_model.dart';
 import '../../../../../../data/models/article_model.dart';
 import '../../../../../controllers/data_bloc/api_data_bloc.dart';
+import '../../../../../widgets/custom_shimmer_widget.dart';
 
 class CarouselHeaderWidget extends StatelessWidget {
-  final ApiDataBloc<ArticleModel> carouselBloc = ApiDataBloc(query: QueryParams(category: 'sport', pageSize: 5), maxResult: 5)..add(ApiDataPagination());
+  final ApiDataBloc<ArticleModel> carouselBloc = ApiDataBloc(
+      query: QueryParams(category: 'sport', pageSize: 5), maxResult: 5)
+    ..add(ApiDataPagination());
 
   final ValueNotifier<int> _notifier = ValueNotifier<int>(0);
 
@@ -26,29 +29,30 @@ class CarouselHeaderWidget extends StatelessWidget {
       child: BlocBuilder(
         bloc: carouselBloc,
         builder: (context, state) {
-          if(state is ApiDataLoaded<ApiPaginationModel<ArticleModel>>) {
+          if (state is ApiDataLoaded<ApiPaginationModel<ArticleModel>>) {
             List<ArticleModel>? article = state.data!.data;
             return Column(
               children: [
                 CarouselSlider.builder(
-                itemCount: state.data!.data?.length,
-                options: CarouselOptions(
-                  height: 200,
-                  viewportFraction: 0.92,
-                  enableInfiniteScroll: true,
-                  reverse: true,
-                  autoPlay: true,
-                  autoPlayInterval: const Duration(seconds: 15),
-                  autoPlayAnimationDuration: const Duration(milliseconds: 800),
-                  autoPlayCurve: Curves.fastOutSlowIn,
-                  enlargeCenterPage: true,
-                  scrollDirection: Axis.horizontal,
-                  onPageChanged: (index, reason) {
-                    _notifier.value = index;
-                  },
-                ),
-                itemBuilder: (
-                  BuildContext context, int itemIndex, int pageViewIndex) {
+                  itemCount: state.data!.data?.length,
+                  options: CarouselOptions(
+                    height: 200,
+                    viewportFraction: 0.92,
+                    enableInfiniteScroll: true,
+                    reverse: false,
+                    autoPlay: true,
+                    autoPlayInterval: const Duration(seconds: 15),
+                    autoPlayAnimationDuration:
+                        const Duration(milliseconds: 800),
+                    autoPlayCurve: Curves.fastOutSlowIn,
+                    enlargeCenterPage: true,
+                    scrollDirection: Axis.horizontal,
+                    onPageChanged: (index, reason) {
+                      _notifier.value = index;
+                    },
+                  ),
+                  itemBuilder:
+                      (BuildContext context, int itemIndex, int pageViewIndex) {
                     return ClipRRect(
                       borderRadius: BorderRadius.circular(14),
                       child: Stack(
@@ -58,16 +62,16 @@ class CarouselHeaderWidget extends StatelessWidget {
                             width: double.infinity,
                             height: double.infinity,
                             fit: BoxFit.cover,
-                            placeholder: (context, url) => Assets.images.noImage.svg(
-                              width: double.infinity,
-                              height: double.infinity,
-                              fit: BoxFit.cover
-                            ),
-                            errorWidget: (context, url, error) => Assets.images.noImage.svg(
-                              width: double.infinity,
-                              height: double.infinity,
-                              fit: BoxFit.cover
-                            ),
+                            placeholder: (context, url) => Assets.images.noImage
+                                .svg(
+                                    width: double.infinity,
+                                    height: double.infinity,
+                                    fit: BoxFit.cover),
+                            errorWidget: (context, url, error) =>
+                                Assets.images.noImage.svg(
+                                    width: double.infinity,
+                                    height: double.infinity,
+                                    fit: BoxFit.cover),
                           ),
                           Align(
                             alignment: Alignment.bottomCenter,
@@ -75,14 +79,20 @@ class CarouselHeaderWidget extends StatelessWidget {
                               height: 80,
                               width: double.infinity,
                               child: DecoratedBox(
-                                decoration: const BoxDecoration(
-                                  color: Colors.black38
-                                ),
+                                decoration:
+                                    const BoxDecoration(color: Colors.black38),
                                 child: Padding(
-                                  padding: const EdgeInsetsDirectional.only(top: 8, start: 8),
+                                  padding: const EdgeInsetsDirectional.only(
+                                      top: 8, start: 8),
                                   child: Text(
                                     article[itemIndex].title!,
-                                    style: const TextStyle(fontFamily: FontFamily.roboto, fontSize: 16, fontWeight: FontWeight.w400, overflow: TextOverflow.ellipsis, height: 1.3, color: Colors.white),
+                                    style: const TextStyle(
+                                        fontFamily: FontFamily.roboto,
+                                        fontSize: 16,
+                                        fontWeight: FontWeight.w400,
+                                        overflow: TextOverflow.ellipsis,
+                                        height: 1.3,
+                                        color: Colors.white),
                                     maxLines: 2,
                                     softWrap: true,
                                   ),
@@ -95,7 +105,9 @@ class CarouselHeaderWidget extends StatelessWidget {
                     );
                   },
                 ),
-                const SizedBox(height: 8,),
+                const SizedBox(
+                  height: 8,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: List.generate(state.data!.data!.length, (index) {
@@ -108,11 +120,11 @@ class CarouselHeaderWidget extends StatelessWidget {
                           valueListenable: _notifier,
                           builder: (context, value, child) {
                             return DecoratedBox(
-                              decoration: BoxDecoration(
-                                color: _notifier.value == index ? ThemeManager().themes.color[3] : ThemeManager().themes.color[5],
-                                borderRadius: BorderRadius.circular(8)
-                              )
-                            );
+                                decoration: BoxDecoration(
+                                    color: _notifier.value == index
+                                        ? ThemeManager().appColor[3]
+                                        : ThemeManager().appColor[5],
+                                    borderRadius: BorderRadius.circular(8)));
                           },
                         ),
                       ),
@@ -121,8 +133,14 @@ class CarouselHeaderWidget extends StatelessWidget {
                 ),
               ],
             );
+          } else {
+            return const CustomShimmerWidget(
+              margin: EdgeInsets.symmetric(horizontal: 12),
+              height: 200,
+              width: double.infinity,
+              radius: 14,
+            );
           }
-          return const Center(child: CircularProgressIndicator());
         },
       ),
     );

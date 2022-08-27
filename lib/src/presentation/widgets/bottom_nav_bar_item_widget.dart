@@ -7,10 +7,8 @@ import '../controllers/navigation_bar_controller.dart';
 import 'custom_container_with_icon.dart';
 
 class BottomNavBarItemWidget extends StatefulWidget {
-
   final NavBarSection section;
   final int index;
-
 
   const BottomNavBarItemWidget({
     super.key,
@@ -35,19 +33,22 @@ class _BottomNavBarItemWidgetState extends State<BottomNavBarItemWidget> {
   Widget build(BuildContext context) {
     return Flexible(
       child: InkWell(
-        onTap: ()=> cubit?.setIndex(widget.index),
+        onTap: () => cubit?.setIndex(widget.index),
         child: BlocBuilder<NavigationBarController, int>(
           builder: (context, state) {
             return CustomContainerWithIcon(
-              width: 48,
-              height: 40,
-              backgroundColor: state == widget.section.navData.keys.first ? ThemeManager().themes.appColor[3] : ThemeManager().themes.appColor[2],
-              child: Icon(
-                widget.section.navData.values.first,
-                size: 20,
-                color: state == widget.section.navData.keys.first ? ThemeManager().themes.appColor[0] : ThemeManager().themes.appColor[3],
-              )
-            );
+                width: 48,
+                height: 40,
+                backgroundColor: state == widget.section.navData.keys.first
+                    ? ThemeManager().appColor[3]
+                    : ThemeManager().appColor[2],
+                child: Icon(
+                  widget.section.navData.values.first,
+                  size: 20,
+                  color: state == widget.section.navData.keys.first
+                      ? ThemeManager().appColor[0]
+                      : ThemeManager().appColor[3],
+                ),);
           },
         ),
       ),
