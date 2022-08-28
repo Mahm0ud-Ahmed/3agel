@@ -74,12 +74,14 @@ class CategoryNewsItemWidget extends StatelessWidget {
                         mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         crossAxisAlignment: CrossAxisAlignment.end,
                         children: [
-                          Text(
-                            DateFormat('dd/MM/yyyy hh:mm a').format(
-                                DateTime.tryParse(article.publishedAt!)!),
-                            softWrap: true,
-                            overflow: TextOverflow.ellipsis,
-                            maxLines: 1,
+                          Flexible(
+                            child: Text(
+                              DateFormat('dd/MM/yyyy hh:mm a').format(
+                                  DateTime.tryParse(article.publishedAt!)!),
+                              softWrap: true,
+                              overflow: TextOverflow.ellipsis,
+                              maxLines: 1,
+                            ),
                           ),
                           IconButton(
                             onPressed: () {},
