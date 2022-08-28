@@ -20,7 +20,7 @@ class CarouselItemLoadedWidget extends StatelessWidget {
         CarouselSlider.builder(
           itemCount: article?.length,
           options: CarouselOptions(
-            height: 200,
+            height: MediaQuery.of(context).size.height * 0.4,
             viewportFraction: 0.92,
             enableInfiniteScroll: true,
             reverse: false,
