@@ -15,7 +15,7 @@ class CarouselHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: 220,
+      height: MediaQuery.of(context).size.height * 0.44,
       width: double.infinity,
       child: BlocBuilder(
         bloc: carouselBloc,
