@@ -49,7 +49,7 @@ class _LatestPageState extends State<LatestPage> {
             child: CarouselHeaderWidget(carouselBloc: _carouselBloc),
           ),
           SliverPadding(
-            padding: const EdgeInsets.symmetric(vertical: 12),
+            padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
             sliver: SliverToBoxAdapter(
               child: CategoryNewsWidget(
                 onTab: updateListeners,
