@@ -42,16 +42,16 @@ class CategoryNewsList extends StatelessWidget {
             ),
           );
         },
+        newPageProgressIndicatorBuilder: (context) {
+          return const CustomShimmerWidget(
+            height: 120,
+            width: 400,
+            radius: 16,
+          );
+        },
         newPageErrorIndicatorBuilder: (context) {
-          return Column(
-            children: List.generate(
-              10,
-              (index) => const CustomShimmerWidget(
-                height: 120,
-                width: 400,
-                radius: 16,
-              ),
-            ),
+          return Center(
+            child: Text(articleBloc!.controller.error!.message ?? ''),
           );
         },
         firstPageErrorIndicatorBuilder: (context) {
