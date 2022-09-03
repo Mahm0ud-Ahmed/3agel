@@ -1,3 +1,4 @@
+import 'package:aagel/src/core/config/assets/assets.gen.dart';
 import 'package:aagel/src/core/config/themes/theme_manager.dart';
 import 'package:aagel/src/presentation/widgets/custom_container_with_icon.dart';
 import 'package:aagel/src/presentation/widgets/generic_text_field.dart';
@@ -19,9 +20,15 @@ class _SearchPageState extends State<SearchPage> {
   @override
   Widget build(BuildContext context) {
     return CustomScrollView(
+      physics: const BouncingScrollPhysics(),
       slivers: [
         SliverToBoxAdapter(
           child: HeaderSearchWidget(),
+        ),
+        SliverFillRemaining(
+          hasScrollBody: false,
+          fillOverscroll: true,
+          child: Assets.images.searchingData.svg(),
         ),
       ],
     );
