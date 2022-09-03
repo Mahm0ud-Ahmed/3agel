@@ -19,6 +19,9 @@ class $AssetsImagesGen {
 
   /// File path: assets/images/no_image.svg
   SvgGenImage get noImage => const SvgGenImage('assets/images/no_image.svg');
+
+  /// File path: assets/images/searching_data.svg
+  SvgGenImage get searchingData => const SvgGenImage('assets/images/searching_data.svg');
 }
 
 class Assets {
