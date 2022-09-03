@@ -46,14 +46,16 @@ class CarouselItemLoadedWidget extends StatelessWidget {
                     height: double.infinity,
                     fit: BoxFit.cover,
                     placeholder: (context, url) => Assets.images.noImage.svg(
-                        width: double.infinity,
-                        height: double.infinity,
-                        fit: BoxFit.cover),
-                    errorWidget: (context, url, error) => Assets.images.noImage
-                        .svg(
-                            width: double.infinity,
-                            height: double.infinity,
-                            fit: BoxFit.cover),
+                      width: double.infinity,
+                      height: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
+                    errorWidget: (context, url, error) =>
+                        Assets.images.noImage.svg(
+                      width: double.infinity,
+                      height: double.infinity,
+                      fit: BoxFit.cover,
+                    ),
                   ),
                   Align(
                     alignment: Alignment.bottomCenter,
