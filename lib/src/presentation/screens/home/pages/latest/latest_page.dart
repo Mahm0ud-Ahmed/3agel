@@ -27,12 +27,12 @@ class _LatestPageState extends State<LatestPage> {
   @override
   void initState() {
     super.initState();
-    _carouselBloc = ApiDataBloc(
+    _carouselBloc = ApiDataBloc<ArticleModel>(
         query: QueryParams(category: 'general', pageSize: 5),
         maxResult: 5)
       ..add(ApiDataPagination());
 
-    _articleBloc = ApiDataBloc(maxResult: 10, query: _query);
+    _articleBloc = ApiDataBloc<ArticleModel>(maxResult: 10, query: _query);
     _categoryListen = ValueNotifier(NewsCategory.business);
   }
 
