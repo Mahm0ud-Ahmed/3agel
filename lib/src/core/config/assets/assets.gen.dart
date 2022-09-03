@@ -14,6 +14,9 @@ import 'package:flutter/services.dart';
 class $AssetsImagesGen {
   const $AssetsImagesGen();
 
+  /// File path: assets/images/no_data.svg
+  SvgGenImage get noData => const SvgGenImage('assets/images/no_data.svg');
+
   /// File path: assets/images/no_image.svg
   SvgGenImage get noImage => const SvgGenImage('assets/images/no_image.svg');
 }
