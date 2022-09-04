@@ -14,8 +14,8 @@ import '../../widgets/my_app_bar_widget.dart';
 class HomePage extends StatelessWidget {
 
   final List<Widget> pages = <Widget>[
-    LatestPage(),
-    const SearchPage(),
+    const LatestPage(),
+    SearchPage(),
     const BookmarkPage(),
     const NewsPage(),
     const ProfilePage()
