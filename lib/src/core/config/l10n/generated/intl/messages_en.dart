@@ -35,8 +35,11 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Un-Expected Error"),
         "no_more_data_state":
             MessageLookupByLibrary.simpleMessage("No More Data!"),
+        "setting_page_dark_theme": MessageLookupByLibrary.simpleMessage("Dark"),
         "setting_page_language":
             MessageLookupByLibrary.simpleMessage("Language"),
+        "setting_page_light_theme":
+            MessageLookupByLibrary.simpleMessage("Light"),
         "setting_page_theme": MessageLookupByLibrary.simpleMessage("Theme")
       };
 }

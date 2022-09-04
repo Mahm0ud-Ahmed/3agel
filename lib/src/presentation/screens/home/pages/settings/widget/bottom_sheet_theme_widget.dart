@@ -5,6 +5,7 @@ import 'package:aagel/src/core/services/storage_service.dart';
 import 'package:aagel/src/presentation/controllers/setting_helper.dart';
 import 'package:flutter/material.dart';
 
+import '../../../../../../core/config/l10n/generated/l10n.dart';
 import '../../../../../../core/config/themes/dark_theme.dart';
 import '../../../../../../core/utils/constant.dart';
 import '../../../../../../core/utils/enums.dart';
@@ -45,6 +46,7 @@ class BottomSheetThemeWidget extends StatelessWidget {
                   const BorderRadius.vertical(top: Radius.circular(25)),
             ),
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 RadioListTile(
                   value: SupportTheme.light,
@@ -53,7 +55,7 @@ class BottomSheetThemeWidget extends StatelessWidget {
                     themeNotifier.value = value;
                     await SettingHelper.changeThemeMode(value);
                   },
-                  title: Text(SupportTheme.light.themeMod),
+                  title: Text(S().setting_page_light_theme),
                 ),
                 RadioListTile(
                   value: SupportTheme.dark,
@@ -62,7 +64,7 @@ class BottomSheetThemeWidget extends StatelessWidget {
                     themeNotifier.value = value;
                     await SettingHelper.changeThemeMode(value);
                   },
-                  title: Text(SupportTheme.dark.themeMod),
+                  title: Text(S().setting_page_dark_theme),
                 ),
               ],
             ),

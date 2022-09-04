@@ -9,5 +9,7 @@
     "category_item_source": "Source:",
 
     "setting_page_language": "Language",
-    "setting_page_theme": "Theme"
+    "setting_page_theme": "Theme",
+    "setting_page_light_theme": "Light",
+    "setting_page_dark_theme": "Dark"
 }

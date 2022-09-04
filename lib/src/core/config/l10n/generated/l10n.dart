@@ -139,6 +139,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Light`
+  String get setting_page_light_theme {
+    return Intl.message(
+      'Light',
+      name: 'setting_page_light_theme',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Dark`
+  String get setting_page_dark_theme {
+    return Intl.message(
+      'Dark',
+      name: 'setting_page_dark_theme',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

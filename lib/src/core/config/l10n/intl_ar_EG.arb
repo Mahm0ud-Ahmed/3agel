@@ -9,7 +9,10 @@
     "category_item_source": "المصدر:",
 
     "setting_page_language": "اللغة",
-    "setting_page_theme": "السمة"
+    "setting_page_theme": "السمة",
+    "setting_page_light_theme": "فاتح",
+    "setting_page_dark_theme": "داكن"
+
 
 
 }

@@ -35,7 +35,10 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("خطأ غير متوقع"),
         "no_more_data_state":
             MessageLookupByLibrary.simpleMessage("لا يوجد بيانات"),
+        "setting_page_dark_theme": MessageLookupByLibrary.simpleMessage("داكن"),
         "setting_page_language": MessageLookupByLibrary.simpleMessage("اللغة"),
+        "setting_page_light_theme":
+            MessageLookupByLibrary.simpleMessage("فاتح"),
         "setting_page_theme": MessageLookupByLibrary.simpleMessage("السمة")
       };
 }
