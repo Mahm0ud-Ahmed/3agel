@@ -11,7 +11,15 @@
     "setting_page_language": "اللغة",
     "setting_page_theme": "السمة",
     "setting_page_light_theme": "فاتح",
-    "setting_page_dark_theme": "داكن"
+    "setting_page_dark_theme": "داكن",
+
+    "api_section_business":"أعمال",
+    "api_section_entertainment":"تسلية",
+    "api_section_general":"عام",
+    "api_section_health":"صحة",
+    "api_section_science":"علوم",
+    "api_section_sports":"رياضة",
+    "api_section_technology":"تكنولوجي"
 
 
 

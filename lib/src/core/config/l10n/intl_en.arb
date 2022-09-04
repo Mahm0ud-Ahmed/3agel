@@ -11,5 +11,13 @@
     "setting_page_language": "Language",
     "setting_page_theme": "Theme",
     "setting_page_light_theme": "Light",
-    "setting_page_dark_theme": "Dark"
+    "setting_page_dark_theme": "Dark",
+
+    "api_section_business":"Business",
+    "api_section_entertainment":"Entertainment",
+    "api_section_general":"General",
+    "api_section_health":"Health",
+    "api_section_science":"Science",
+    "api_section_sports":"Sports",
+    "api_section_technology":"Technology"
 }

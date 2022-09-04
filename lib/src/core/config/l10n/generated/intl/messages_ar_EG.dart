@@ -22,6 +22,15 @@ class MessageLookup extends MessageLookupByLibrary {
 
   final messages = _notInlinedMessages(_notInlinedMessages);
   static Map<String, Function> _notInlinedMessages(_) => <String, Function>{
+        "api_section_business": MessageLookupByLibrary.simpleMessage("أعمال"),
+        "api_section_entertainment":
+            MessageLookupByLibrary.simpleMessage("تسلية"),
+        "api_section_general": MessageLookupByLibrary.simpleMessage("عام"),
+        "api_section_health": MessageLookupByLibrary.simpleMessage("صحة"),
+        "api_section_science": MessageLookupByLibrary.simpleMessage("علوم"),
+        "api_section_sports": MessageLookupByLibrary.simpleMessage("رياضة"),
+        "api_section_technology":
+            MessageLookupByLibrary.simpleMessage("تكنولوجي"),
         "app_bar_title": MessageLookupByLibrary.simpleMessage("عاجل"),
         "category_item_source": MessageLookupByLibrary.simpleMessage("المصدر:"),
         "handle_error_message_cancel":

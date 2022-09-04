@@ -159,6 +159,76 @@ class S {
       args: [],
     );
   }
+
+  /// `Business`
+  String get api_section_business {
+    return Intl.message(
+      'Business',
+      name: 'api_section_business',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Entertainment`
+  String get api_section_entertainment {
+    return Intl.message(
+      'Entertainment',
+      name: 'api_section_entertainment',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `General`
+  String get api_section_general {
+    return Intl.message(
+      'General',
+      name: 'api_section_general',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Health`
+  String get api_section_health {
+    return Intl.message(
+      'Health',
+      name: 'api_section_health',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Science`
+  String get api_section_science {
+    return Intl.message(
+      'Science',
+      name: 'api_section_science',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Sports`
+  String get api_section_sports {
+    return Intl.message(
+      'Sports',
+      name: 'api_section_sports',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Technology`
+  String get api_section_technology {
+    return Intl.message(
+      'Technology',
+      name: 'api_section_technology',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {
