@@ -41,7 +41,7 @@ class HomePage extends StatelessWidget {
             return pages[state];
           },
         ),
-        bottomNavigationBar: const BottomNavBarWidget(),
+        bottomNavigationBar: BottomNavBarWidget(),
       ),
     );
   }
