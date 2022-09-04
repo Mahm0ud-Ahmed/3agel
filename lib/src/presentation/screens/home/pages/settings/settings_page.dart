@@ -1,4 +1,3 @@
-import 'package:aagel/src/core/config/themes/theme_manager.dart';
 import 'package:aagel/src/presentation/screens/home/pages/settings/widget/bottom_sheet_language_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
