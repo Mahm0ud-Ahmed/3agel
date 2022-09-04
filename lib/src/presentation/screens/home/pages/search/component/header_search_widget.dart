@@ -5,7 +5,14 @@ import '../../../../../widgets/custom_container_with_icon.dart';
 import '../../../../../widgets/generic_text_field.dart';
 
 class HeaderSearchWidget extends StatelessWidget {
-  const HeaderSearchWidget({super.key});
+  Function(String)? onChange;
+  Function()? onTab;
+
+  HeaderSearchWidget({
+    super.key,
+    this.onChange,
+    this.onTab,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +23,8 @@ class HeaderSearchWidget extends StatelessWidget {
           Expanded(
             child: GenericTextField(
               margin: const EdgeInsets.symmetric(horizontal: 12),
+              onChange: onChange,
+              onTab: onTab,
             ),
           ),
           CustomContainerWithIcon(
