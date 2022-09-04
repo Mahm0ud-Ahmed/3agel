@@ -9,7 +9,14 @@ import '../../../../../../core/utils/constant.dart';
 import '../../../../../../core/utils/enums.dart';
 
 class BottomSheetThemeWidget extends StatelessWidget {
+  ValueNotifier<SupportTheme?> themeNotifier =
+      ValueNotifier<SupportTheme?>(null);
+
   BottomSheetThemeWidget({super.key}) {
+    initialThemeNotifier();
+  }
+
+  initialThemeNotifier() {
     switch (SettingService.stateMod) {
       case ThemeMode.light:
         themeNotifier.value = SupportTheme.light;
@@ -23,9 +30,6 @@ class BottomSheetThemeWidget extends StatelessWidget {
     }
   }
 
-  ValueNotifier<SupportTheme?> themeNotifier =
-      ValueNotifier<SupportTheme?>(null);
-
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -33,30 +37,38 @@ class BottomSheetThemeWidget extends StatelessWidget {
       child: ValueListenableBuilder(
         valueListenable: themeNotifier,
         builder: (context, value, child) {
-          return Column(
-            children: [
-              RadioListTile(
-                value: SupportTheme.light,
-                groupValue: themeNotifier.value,
-                onChanged: (SupportTheme? value) async {
-                  themeNotifier.value = value;
-                  ThemeManager().changeThemeMode(LightTheme());
-                  await StorageService().saveBool(Constant.kThemeModeKey, false);
-                },
-                title: Text(SupportTheme.light.themeMod),
-              ),
-              RadioListTile(
-                value: SupportTheme.dark,
-                groupValue: themeNotifier.value,
-                onChanged: (SupportTheme? value) async {
-                  themeNotifier.value = value;
-                  ThemeManager().changeThemeMode(DarkTheme());
-                  await StorageService()
-                      .saveBool(Constant.kThemeModeKey, true);
-                },
-                title: Text(SupportTheme.dark.themeMod),
-              ),
-            ],
+          return DecoratedBox(
+            decoration: BoxDecoration(
+              color: ThemeManager().appColor[0],
+              borderRadius:
+                  const BorderRadius.vertical(top: Radius.circular(25)),
+            ),
+            child: Column(
+              children: [
+                RadioListTile(
+                  value: SupportTheme.light,
+                  groupValue: themeNotifier.value,
+                  onChanged: (SupportTheme? value) async {
+                    themeNotifier.value = value;
+                    ThemeManager().changeThemeMode(LightTheme());
+                    await StorageService()
+                        .saveBool(Constant.kThemeModeKey, false);
+                  },
+                  title: Text(SupportTheme.light.themeMod),
+                ),
+                RadioListTile(
+                  value: SupportTheme.dark,
+                  groupValue: themeNotifier.value,
+                  onChanged: (SupportTheme? value) async {
+                    themeNotifier.value = value;
+                    ThemeManager().changeThemeMode(DarkTheme());
+                    await StorageService()
+                        .saveBool(Constant.kThemeModeKey, true);
+                  },
+                  title: Text(SupportTheme.dark.themeMod),
+                ),
+              ],
+            ),
           );
         },
       ),
