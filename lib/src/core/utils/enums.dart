@@ -27,3 +27,21 @@ enum NewsCategory {
 
   const NewsCategory(this.category);
 }
+
+enum SupportLanguage {
+  english('English'),
+  arabic('عربي');
+
+  final String currentLang;
+
+  const SupportLanguage(this.currentLang);
+}
+
+enum SupportTheme {
+  dark('Dark Mod'),
+  light('Light Mod');
+
+  final String themeMod;
+
+  const SupportTheme(this.themeMod);
+}
