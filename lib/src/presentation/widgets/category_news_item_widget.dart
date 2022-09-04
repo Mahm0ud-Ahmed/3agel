@@ -70,31 +70,33 @@ class CategoryNewsItemWidget extends StatelessWidget {
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
                       ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        crossAxisAlignment: CrossAxisAlignment.end,
-                        children: [
-                          Flexible(
-                            child: Text(
-                              DateFormat('dd/MM/yyyy hh:mm a').format(
-                                  DateTime.tryParse(article.publishedAt!)!),
-                              softWrap: true,
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 1,
+                      Expanded(
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          crossAxisAlignment: CrossAxisAlignment.end,
+                          children: [
+                            Flexible(
+                              child: Text(
+                                DateFormat('dd/MM/yyyy hh:mm a').format(
+                                    DateTime.tryParse(article.publishedAt!)!),
+                                softWrap: true,
+                                overflow: TextOverflow.ellipsis,
+                                maxLines: 1,
+                              ),
                             ),
-                          ),
-                          IconButton(
-                            onPressed: () {},
-                            padding: EdgeInsets.zero,
-                            constraints: const BoxConstraints(),
-                            splashColor: Colors.transparent,
-                            highlightColor: Colors.transparent,
-                            icon: const Icon(
-                              Icons.star_outline,
-                              size: 18,
+                            IconButton(
+                              onPressed: () {},
+                              padding: EdgeInsets.zero,
+                              constraints: const BoxConstraints(),
+                              splashColor: Colors.transparent,
+                              highlightColor: Colors.transparent,
+                              icon: const Icon(
+                                Icons.star_outline,
+                                size: 18,
+                              ),
                             ),
-                          ),
-                        ],
+                          ],
+                        ),
                       ),
                     ],
                   ),
