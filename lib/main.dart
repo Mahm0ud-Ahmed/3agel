@@ -8,6 +8,7 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'main.reflectable.dart';
 import 'src/core/config/l10n/generated/l10n.dart';
+import 'src/core/config/themes/language_manager.dart';
 
 
 
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
     return BlocProvider<ApiDataBloc>(
       create: (context) => ApiDataBloc(),
       child: AnimatedBuilder(
-          animation: Listenable.merge([ThemeManager()]),
+          animation: Listenable.merge([ThemeManager(), LanguageManager()]),
           builder: (context, child) => MaterialApp(
             title: '3agel',
             debugShowCheckedModeBanner: false,
@@ -34,7 +35,7 @@ class MyApp extends StatelessWidget {
             darkTheme: ThemeManager().myTheme,
             themeMode: ThemeManager().mode,
             onGenerateRoute: AppRoute.generateRoute,
-            locale: const Locale('en'),
+            locale: LanguageManager().locale,
             localizationsDelegates: const [
               S.delegate,
               AppLocalizationDelegate(),
