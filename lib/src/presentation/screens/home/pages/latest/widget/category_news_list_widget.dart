@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 
 import '../../../../../controllers/data_bloc/api_data_bloc.dart';
-import 'category_news_item_widget.dart';
+import '../../../../../widgets/category_news_item_widget.dart';
 
 class CategoryNewsList extends StatelessWidget {
   final ApiDataBloc<ArticleModel>? articleBloc;
