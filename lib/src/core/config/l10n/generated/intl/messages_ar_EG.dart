@@ -34,6 +34,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "handle_error_status_connect_time_out":
             MessageLookupByLibrary.simpleMessage("خطأ غير متوقع"),
         "no_more_data_state":
-            MessageLookupByLibrary.simpleMessage("لا يوجد بيانات")
+            MessageLookupByLibrary.simpleMessage("لا يوجد بيانات"),
+        "setting_page_language": MessageLookupByLibrary.simpleMessage("اللغة"),
+        "setting_page_theme": MessageLookupByLibrary.simpleMessage("السمة")
       };
 }

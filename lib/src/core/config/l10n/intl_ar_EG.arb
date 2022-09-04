@@ -6,6 +6,10 @@
 
     "app_bar_title": "عاجل",
     "no_more_data_state": "لا يوجد بيانات",
-    "category_item_source": "المصدر:"
+    "category_item_source": "المصدر:",
+
+    "setting_page_language": "اللغة",
+    "setting_page_theme": "السمة"
+
 
 }

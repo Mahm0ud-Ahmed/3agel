@@ -6,5 +6,8 @@
 
     "app_bar_title": "3agel",
     "no_more_data_state": "No More Data!",
-    "category_item_source": "Source:"
+    "category_item_source": "Source:",
+
+    "setting_page_language": "Language",
+    "setting_page_theme": "Theme"
 }

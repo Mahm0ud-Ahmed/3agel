@@ -119,6 +119,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Language`
+  String get setting_page_language {
+    return Intl.message(
+      'Language',
+      name: 'setting_page_language',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Theme`
+  String get setting_page_theme {
+    return Intl.message(
+      'Theme',
+      name: 'setting_page_theme',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

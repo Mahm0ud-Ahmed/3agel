@@ -34,6 +34,9 @@ class MessageLookup extends MessageLookupByLibrary {
         "handle_error_status_connect_time_out":
             MessageLookupByLibrary.simpleMessage("Un-Expected Error"),
         "no_more_data_state":
-            MessageLookupByLibrary.simpleMessage("No More Data!")
+            MessageLookupByLibrary.simpleMessage("No More Data!"),
+        "setting_page_language":
+            MessageLookupByLibrary.simpleMessage("Language"),
+        "setting_page_theme": MessageLookupByLibrary.simpleMessage("Theme")
       };
 }
