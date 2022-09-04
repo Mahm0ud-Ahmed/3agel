@@ -2,6 +2,7 @@ import 'package:aagel/src/core/config/themes/light_theme.dart';
 import 'package:aagel/src/core/config/themes/theme_manager.dart';
 import 'package:aagel/src/core/services/setting_service.dart';
 import 'package:aagel/src/core/services/storage_service.dart';
+import 'package:aagel/src/presentation/controllers/setting_helper.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/config/themes/dark_theme.dart';
@@ -50,9 +51,7 @@ class BottomSheetThemeWidget extends StatelessWidget {
                   groupValue: themeNotifier.value,
                   onChanged: (SupportTheme? value) async {
                     themeNotifier.value = value;
-                    ThemeManager().changeThemeMode(LightTheme());
-                    await StorageService()
-                        .saveBool(Constant.kThemeModeKey, false);
+                    await SettingHelper.changeThemeMode(value);
                   },
                   title: Text(SupportTheme.light.themeMod),
                 ),
@@ -61,9 +60,7 @@ class BottomSheetThemeWidget extends StatelessWidget {
                   groupValue: themeNotifier.value,
                   onChanged: (SupportTheme? value) async {
                     themeNotifier.value = value;
-                    ThemeManager().changeThemeMode(DarkTheme());
-                    await StorageService()
-                        .saveBool(Constant.kThemeModeKey, true);
+                    await SettingHelper.changeThemeMode(value);
                   },
                   title: Text(SupportTheme.dark.themeMod),
                 ),
