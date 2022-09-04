@@ -23,6 +23,13 @@ class BottomNavBarWidget extends StatelessWidget {
               color: ThemeManager().appColor[5],
               width: 0.5,
             ),
+            boxShadow: [
+              BoxShadow(
+                color: ThemeManager().appColor[2],
+                blurRadius: 40.0,
+                spreadRadius: 4.0,
+              )
+            ],
             borderRadius: const BorderRadius.only(
                 topLeft: Radius.circular(16), topRight: Radius.circular(16)),
           ),
