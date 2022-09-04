@@ -25,7 +25,7 @@ class _NewsPageState extends State<NewsPage> {
   void initState() {
     super.initState();
 
-    _articleBloc = ApiDataBloc(query: _query, maxResult: 20);
+    _articleBloc = ApiDataBloc(query: _query, maxResult: 50);
     _categoryListen = ValueNotifier(NewsCategory.business);
   }
 
