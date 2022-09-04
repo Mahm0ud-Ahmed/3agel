@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-class ProfilePage extends StatefulWidget {
-  const ProfilePage({super.key});
+class SettingsPage extends StatefulWidget {
+  const SettingsPage({super.key});
 
   @override
-  State<ProfilePage> createState() => _ProfilePageState();
+  State<SettingsPage> createState() => _SettingsPageState();
 }
 
-class _ProfilePageState extends State<ProfilePage> {
+class _SettingsPageState extends State<SettingsPage> {
   // ApiDataBloc<ArticleModel> bloc = ApiDataBloc(query: QueryParams(category: 'general', pageSize: 5), maxResult: 5)..add(ApiDataPagination());
   @override
   Widget build(BuildContext context) {
@@ -15,7 +15,7 @@ class _ProfilePageState extends State<ProfilePage> {
       width: double.infinity,
       height: double.infinity,
       color: Colors.green,
-      child: Text('Bookmark')
+      child: Text('Bookmark'),
     );
 
   }

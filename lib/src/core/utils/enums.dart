@@ -7,7 +7,7 @@ enum NavBarSection {
   search({1: IconBroken.Search}),
   bookmark({2: IconBroken.Bookmark}),
   news({3: IconBroken.Paper}),
-  profile({4: IconBroken.Profile});
+  setting({4: IconBroken.Setting});
 
   final Map<int, IconData> navData;
 

@@ -4,8 +4,8 @@ import 'package:flutter/material.dart';
 import '../../../../../core/utils/query_params.dart';
 import '../../../../../data/models/article_model.dart';
 import '../../../../controllers/data_bloc/api_data_bloc.dart';
-import 'component/header_search_widget.dart';
-import 'component/search_body_widget.dart';
+import 'widget/header_search_widget.dart';
+import 'widget/search_body_widget.dart';
 
 class SearchPage extends StatefulWidget {
   bool isSearch;
