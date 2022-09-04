@@ -1,3 +1,4 @@
+import 'package:aagel/src/core/config/themes/theme_manager.dart';
 import 'package:aagel/src/presentation/screens/home/pages/settings/widget/bottom_sheet_language_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -22,30 +23,34 @@ class _SettingsPageState extends State<SettingsPage> {
             showModalBottomSheet(
               context: context,
               shape: const RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(25))),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+              ),
               builder: (context) {
                 return BottomSheetLanguageWidget();
               },
             );
           },
           title: Text(S().setting_page_language),
-          trailing: const FaIcon(FontAwesomeIcons.language),
+          trailing: const FaIcon(
+            FontAwesomeIcons.language,
+          ),
         ),
         ListTile(
           onTap: () {
             showModalBottomSheet(
               context: context,
               shape: const RoundedRectangleBorder(
-                  borderRadius:
-                      BorderRadius.vertical(top: Radius.circular(25))),
+                borderRadius: BorderRadius.vertical(top: Radius.circular(25)),
+              ),
               builder: (context) {
                 return BottomSheetThemeWidget();
               },
             );
           },
           title: Text(S().setting_page_theme),
-          trailing: const Icon(Icons.dark_mode),
+          trailing: const Icon(
+            Icons.dark_mode,
+          ),
         ),
       ],
     );
