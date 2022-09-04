@@ -20,8 +20,8 @@ class ShimmerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Shimmer.fromColors(
-      baseColor: baseColor ?? ThemeManager().appColor[5].withOpacity(0.2),
-      highlightColor: highlightColor ?? ThemeManager().appColor[5].withOpacity(0.01),
+      baseColor: baseColor ?? ThemeManager().appColor[0],
+      highlightColor: highlightColor ?? ThemeManager().appColor[1].withOpacity(0.1),
       child: child,
     );
   }
