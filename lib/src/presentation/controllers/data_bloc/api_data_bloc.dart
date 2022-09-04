@@ -95,14 +95,23 @@ class ApiDataBloc<MODEL> extends Bloc<ApiDataEvent, ApiDataState> {
 
   void newSettingForPagination(ApiPaginationModel<MODEL> pagination) {
     _criteria.pageNumber += 1;
-    final bool noMoreData = maxResult == null
-        ? pagination.data!.length >= pagination.totalResults!
-        : pagination.data!.length >= maxResult!;
-    if (noMoreData) {
+    bool noMore = noMoreData(pagination);
+    if (noMore) {
       controller.appendLastPage(pagination.data!);
     } else {
       controller.appendPage(pagination.data!, _criteria.getPageNumber);
     }
+  }
+
+  bool noMoreData(ApiPaginationModel<MODEL> pagination) {
+    if (controller.itemList != null) {
+      return maxResult == null
+          ? controller.itemList!.length >= pagination.totalResults!
+          : pagination.totalResults! > maxResult!
+              ? controller.itemList!.length >= maxResult!
+              : controller.itemList!.length >= pagination.totalResults!;
+    }
+    return false;
   }
 
   Future<void> _getDataByPath(
