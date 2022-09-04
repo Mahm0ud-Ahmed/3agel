@@ -1,4 +1,9 @@
+import 'package:aagel/src/presentation/screens/home/pages/settings/widget/bottom_sheet_language_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+
+import '../../../../../core/config/l10n/generated/l10n.dart';
+import 'widget/bottom_sheet_theme_widget.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({super.key});
@@ -8,15 +13,41 @@ class SettingsPage extends StatefulWidget {
 }
 
 class _SettingsPageState extends State<SettingsPage> {
-  // ApiDataBloc<ArticleModel> bloc = ApiDataBloc(query: QueryParams(category: 'general', pageSize: 5), maxResult: 5)..add(ApiDataPagination());
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      color: Colors.green,
-      child: Text('Bookmark'),
+    return Column(
+      children: [
+        ListTile(
+          onTap: () {
+            showModalBottomSheet(
+              context: context,
+              shape: const RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.vertical(top: Radius.circular(25))),
+              builder: (context) {
+                return BottomSheetLanguageWidget();
+              },
+            );
+          },
+          title: Text(S().setting_page_language),
+          trailing: const FaIcon(FontAwesomeIcons.language),
+        ),
+        ListTile(
+          onTap: () {
+            showModalBottomSheet(
+              context: context,
+              shape: const RoundedRectangleBorder(
+                  borderRadius:
+                      BorderRadius.vertical(top: Radius.circular(25))),
+              builder: (context) {
+                return BottomSheetThemeWidget();
+              },
+            );
+          },
+          title: Text(S().setting_page_theme),
+          trailing: const Icon(Icons.dark_mode),
+        ),
+      ],
     );
-
   }
 }
