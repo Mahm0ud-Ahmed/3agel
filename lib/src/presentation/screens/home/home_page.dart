@@ -1,3 +1,7 @@
+import 'package:aagel/src/core/config/l10n/generated/l10n.dart';
+import 'package:aagel/src/core/services/setting_service.dart';
+import 'package:aagel/src/core/services/storage_service.dart';
+import 'package:aagel/src/core/utils/constant.dart';
 import 'package:aagel/src/presentation/controllers/navigation_bar_controller.dart';
 import 'package:aagel/src/presentation/screens/home/pages/bookmark/bookmark_page.dart';
 import 'package:aagel/src/presentation/screens/home/pages/latest/latest_page.dart';
@@ -13,6 +17,10 @@ import 'pages/settings/settings_page.dart';
 // ignore: must_be_immutable
 class HomePage extends StatelessWidget {
 
+  HomePage({
+    super.key,
+  });
+
   final List<Widget> pages = <Widget>[
     const LatestPage(),
     SearchPage(),
@@ -21,19 +29,14 @@ class HomePage extends StatelessWidget {
     const SettingsPage()
   ];
 
-  HomePage({
-    super.key,
-  });
-
-  // ApiDataBloc<ArticleModel> bloc = ApiDataBloc(query: QueryParams(category: 'general', pageSize: 5), maxResult: 5)..add(ApiDataPagination());
   @override
   Widget build(BuildContext context) {
     return BlocProvider<NavigationBarController>(
       create: (context) => NavigationBarController(),
       child: Scaffold(
         extendBody: true,
-        appBar: const PreferredSize(
-          preferredSize: Size(double.infinity, 56),
+        appBar: PreferredSize(
+          preferredSize: const Size(double.infinity, 56),
           child: MyAppBarWidget(),
         ),
         body: BlocBuilder<NavigationBarController, int>(
