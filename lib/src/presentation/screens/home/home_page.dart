@@ -3,6 +3,7 @@ import 'package:aagel/src/core/services/setting_service.dart';
 import 'package:aagel/src/core/services/storage_service.dart';
 import 'package:aagel/src/core/utils/constant.dart';
 import 'package:aagel/src/presentation/controllers/navigation_bar_controller.dart';
+import 'package:aagel/src/presentation/controllers/search_controller.dart';
 import 'package:aagel/src/presentation/screens/home/pages/bookmark/bookmark_page.dart';
 import 'package:aagel/src/presentation/screens/home/pages/latest/latest_page.dart';
 import 'package:aagel/src/presentation/screens/home/pages/news/news_page.dart';
@@ -16,7 +17,6 @@ import 'pages/settings/settings_page.dart';
 
 // ignore: must_be_immutable
 class HomePage extends StatelessWidget {
-
   HomePage({
     super.key,
   });
@@ -31,8 +31,13 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return BlocProvider<NavigationBarController>(
-      create: (context) => NavigationBarController(),
+    return MultiBlocProvider(
+      providers: [
+        BlocProvider<NavigationBarController>(
+            create: (context) => NavigationBarController()),
+        BlocProvider<SearchController>(
+            create: (context) => SearchController()),
+      ],
       child: Scaffold(
         extendBody: true,
         appBar: PreferredSize(

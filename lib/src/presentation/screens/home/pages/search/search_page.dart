@@ -2,9 +2,12 @@ import 'dart:async';
 
 import 'package:aagel/src/core/utils/enums.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/utils/query_params.dart';
 import '../../../../../data/models/article_model.dart';
 import '../../../../controllers/data_bloc/api_data_bloc.dart';
+import '../../../../controllers/search_controller.dart';
+import '../../../../controllers/search_model.dart';
 import '../../../../widgets/header_search_widget.dart';
 import 'widget/search_body_widget.dart';
 
@@ -49,11 +52,15 @@ class _SearchPageState extends State<SearchPage> {
       physics: const BouncingScrollPhysics(),
       slivers: [
         SliverToBoxAdapter(
-          child: HeaderSearchWidget(
-            onChange: executeSearch,
-            onChoose: setCategory,
-            categoryNotifier: _categoryNotifier,
-            onTab: () => preparingSearchData(_currentSearch),
+          child: BlocBuilder<SearchController, SearchModel>(
+            builder: (context, state) {
+              return HeaderSearchWidget(
+                onChange: executeSearch,
+                onChoose: setCategory,
+                categoryNotifier: _categoryNotifier,
+                onTab: () => preparingSearchData(_currentSearch),
+              );
+            },
           ),
         ),
         SliverPadding(

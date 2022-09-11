@@ -1,3 +1,4 @@
+import 'package:aagel/src/presentation/controllers/search_controller.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/utils/enums.dart';
 import '../../../../../core/utils/query_params.dart';
@@ -20,6 +21,8 @@ class _LatestPageState extends State<LatestPage> {
   late final ApiDataBloc<ArticleModel> _carouselBloc;
   late final ApiDataBloc<ArticleModel> _articleBloc;
   late final ValueNotifier<NewsCategory> _categoryListen;
+  String? searchCharacter;
+  NewsCategory? category;
 
   final QueryParams _query = QueryParams(
     category: NewsCategory.business.category,
@@ -49,10 +52,14 @@ class _LatestPageState extends State<LatestPage> {
         slivers: [
           SliverToBoxAdapter(
             child: HeaderSearchWidget(
-              // onChange: executeSearch,
-              // onChoose: setCategory,
+              onChange: (search) => searchCharacter = search,
+              onChoose: (cat) => category = cat,
               categoryNotifier: ValueNotifier(null),
-              onTab: () => NavigationBarController.of(context).setIndex(1),
+              onTab: () {
+                SearchController.of(context).saveSearch(
+                    searchCharacter: searchCharacter, category: category);
+                NavigationBarController.of(context).setIndex(1);
+              },
             ),
           ),
           const SliverToBoxAdapter(
