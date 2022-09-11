@@ -1,3 +1,4 @@
+import 'package:aagel/src/presentation/controllers/setting_helper.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/config/l10n/generated/l10n.dart';
@@ -39,7 +40,7 @@ class CategoryNewsWidget extends StatelessWidget {
                         ),
                       ),
                       child: Center(
-                        child: Text(setSectionName(NewsCategory.values[index])),
+                        child: Text(SettingHelper.setSectionName(NewsCategory.values[index])),
                       ),
                     );
                   },
@@ -50,33 +51,5 @@ class CategoryNewsWidget extends StatelessWidget {
         }),
       ),
     );
-  }
-
-  String setSectionName(NewsCategory category) {
-    late String value;
-    switch (category) {
-      case NewsCategory.business:
-        value = S().api_section_business;
-        break;
-      case NewsCategory.entertainment:
-        value = S().api_section_entertainment;
-        break;
-      case NewsCategory.general:
-        value = S().api_section_general;
-        break;
-      case NewsCategory.health:
-        value = S().api_section_health;
-        break;
-      case NewsCategory.science:
-        value = S().api_section_science;
-        break;
-      case NewsCategory.sports:
-        value = S().api_section_sports;
-        break;
-      case NewsCategory.technology:
-        value = S().api_section_technology;
-        break;
-    }
-    return value;
   }
 }
