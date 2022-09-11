@@ -93,7 +93,8 @@ class _SearchPageState extends State<SearchPage> {
   }
 
   setCategory(NewsCategory? newCategorySearch) {
-    if (_searchCategory != newCategorySearch?.category) {
+    if ((_searchCategory != newCategorySearch?.category) &&
+        (_currentSearch != null && _currentSearch!.isNotEmpty)) {
       _query.category = newCategorySearch?.category;
       _searchBloc.controller.refresh();
     }
