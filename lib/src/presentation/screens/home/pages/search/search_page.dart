@@ -55,6 +55,7 @@ class _SearchPageState extends State<SearchPage> {
           child: BlocBuilder<SearchController, SearchModel>(
             builder: (context, state) {
               return HeaderSearchWidget(
+                initialValue: state.searchCharacter,
                 onChange: executeSearch,
                 onChoose: setCategory,
                 categoryNotifier: _categoryNotifier,

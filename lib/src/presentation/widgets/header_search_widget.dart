@@ -11,6 +11,7 @@ class HeaderSearchWidget extends StatelessWidget {
   Function()? onTab;
   final Function(NewsCategory?)? onChoose;
   final ValueNotifier<NewsCategory?>? categoryNotifier;
+  final String? initialValue;
 
   HeaderSearchWidget({
     super.key,
@@ -18,6 +19,7 @@ class HeaderSearchWidget extends StatelessWidget {
     this.onTab,
     this.onChoose,
     this.categoryNotifier,
+    this.initialValue,
   });
 
   @override
@@ -28,6 +30,7 @@ class HeaderSearchWidget extends StatelessWidget {
         children: [
           Expanded(
             child: GenericTextField(
+              initialValue: initialValue,
               margin: const EdgeInsets.symmetric(horizontal: 12),
               onChange: onChange,
               onTab: onTab,
