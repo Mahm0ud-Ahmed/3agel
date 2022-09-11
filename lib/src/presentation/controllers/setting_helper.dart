@@ -4,6 +4,7 @@ import 'package:aagel/src/core/config/themes/theme_manager.dart';
 import 'package:aagel/src/core/utils/enums.dart';
 import 'package:flutter/material.dart';
 
+import '../../core/config/l10n/generated/l10n.dart';
 import '../../core/config/themes/dark_theme.dart';
 import '../../core/services/storage_service.dart';
 import '../../core/utils/constant.dart';
@@ -46,5 +47,33 @@ class SettingHelper {
 
   static Future<void> _saveCurrentTheme({required bool isDark}) async {
     await StorageService().saveBool(Constant.kThemeModeKey, isDark);
+  }
+
+  static String setSectionName(NewsCategory category) {
+    late String value;
+    switch (category) {
+      case NewsCategory.business:
+        value = S().api_section_business;
+        break;
+      case NewsCategory.entertainment:
+        value = S().api_section_entertainment;
+        break;
+      case NewsCategory.general:
+        value = S().api_section_general;
+        break;
+      case NewsCategory.health:
+        value = S().api_section_health;
+        break;
+      case NewsCategory.science:
+        value = S().api_section_science;
+        break;
+      case NewsCategory.sports:
+        value = S().api_section_sports;
+        break;
+      case NewsCategory.technology:
+        value = S().api_section_technology;
+        break;
+    }
+    return value;
   }
 }

@@ -24,7 +24,7 @@ class GenericTextField extends StatelessWidget {
           decoration: InputDecoration(
             border: InputBorder.none,
             filled: true,
-            fillColor: ThemeManager().appColor[5].withOpacity(0.1),
+            fillColor: ThemeManager().appColor[2],
             contentPadding: const EdgeInsetsDirectional.only(
               top: 6,
               start: 14,
@@ -33,7 +33,7 @@ class GenericTextField extends StatelessWidget {
               onTap: onTab,
               child: Icon(
                 Icons.search,
-                color: ThemeManager().appColor[5],
+                color: ThemeManager().appColor[3],
               ),
             ),
           ),

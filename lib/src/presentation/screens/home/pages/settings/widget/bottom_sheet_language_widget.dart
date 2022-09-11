@@ -43,6 +43,7 @@ class BottomSheetLanguageWidget extends StatelessWidget {
                   onChanged: (SupportLanguage? value) {
                     languageNotifier.value = value;
                     SettingHelper.changeLanguage(value);
+                    Navigator.pop(context);
                   },
                   title: Text(SupportLanguage.english.currentLang),
                 ),
@@ -52,6 +53,7 @@ class BottomSheetLanguageWidget extends StatelessWidget {
                   onChanged: (SupportLanguage? value) {
                     languageNotifier.value = value;
                     SettingHelper.changeLanguage(value);
+                    Navigator.pop(context);
                   },
                   title: Text(SupportLanguage.arabic.currentLang),
                 ),

@@ -1,13 +1,9 @@
-import 'package:aagel/src/core/config/themes/light_theme.dart';
 import 'package:aagel/src/core/config/themes/theme_manager.dart';
 import 'package:aagel/src/core/services/setting_service.dart';
-import 'package:aagel/src/core/services/storage_service.dart';
 import 'package:aagel/src/presentation/controllers/setting_helper.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../../core/config/l10n/generated/l10n.dart';
-import '../../../../../../core/config/themes/dark_theme.dart';
-import '../../../../../../core/utils/constant.dart';
 import '../../../../../../core/utils/enums.dart';
 
 class BottomSheetThemeWidget extends StatelessWidget {
@@ -54,6 +50,7 @@ class BottomSheetThemeWidget extends StatelessWidget {
                   onChanged: (SupportTheme? value) async {
                     themeNotifier.value = value;
                     await SettingHelper.changeThemeMode(value);
+                    Future.delayed(const Duration(microseconds: 0), () => Navigator.pop(context),);
                   },
                   title: Text(S().setting_page_light_theme),
                 ),
@@ -63,6 +60,7 @@ class BottomSheetThemeWidget extends StatelessWidget {
                   onChanged: (SupportTheme? value) async {
                     themeNotifier.value = value;
                     await SettingHelper.changeThemeMode(value);
+                    Future.delayed(const Duration(microseconds: 0), () => Navigator.pop(context),);
                   },
                   title: Text(S().setting_page_dark_theme),
                 ),
