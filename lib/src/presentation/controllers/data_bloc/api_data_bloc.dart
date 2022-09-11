@@ -110,8 +110,9 @@ class ApiDataBloc<MODEL> extends Bloc<ApiDataEvent, ApiDataState> {
           : pagination.totalResults! > maxResult!
               ? controller.itemList!.length >= maxResult!
               : controller.itemList!.length >= pagination.totalResults!;
+    } else {
+      return pagination.totalResults! <= _criteria.getPageSize ? true : false;
     }
-    return false;
   }
 
   Future<void> _getDataByPath(
