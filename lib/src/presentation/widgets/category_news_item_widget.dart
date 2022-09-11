@@ -18,11 +18,13 @@ class CategoryNewsItemWidget extends StatelessWidget {
       builder: (context, constraints) {
         return DecoratedBox(
           decoration: BoxDecoration(
-              color: ThemeManager().appColor[2],
-              borderRadius: BorderRadius.circular(16),
-              border: Border.all(
-                  width: 0.3,
-                  color: ThemeManager().appColor[5].withOpacity(0.4))),
+            color: ThemeManager().appColor[2],
+            borderRadius: BorderRadius.circular(16),
+            border: Border.all(
+              width: 0.3,
+              color: ThemeManager().appColor[5].withOpacity(0.4),
+            ),
+          ),
           child: Row(
             children: [
               ClipRRect(
