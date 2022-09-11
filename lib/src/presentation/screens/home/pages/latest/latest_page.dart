@@ -3,6 +3,8 @@ import '../../../../../core/utils/enums.dart';
 import '../../../../../core/utils/query_params.dart';
 import '../../../../../data/models/article_model.dart';
 import '../../../../controllers/data_bloc/api_data_bloc.dart';
+import '../../../../controllers/navigation_bar_controller.dart';
+import '../../../../widgets/header_search_widget.dart';
 import 'widget/carousel_header_widget.dart';
 import 'widget/category_news_list_widget.dart';
 import 'widget/category_news_widget.dart';
@@ -28,8 +30,7 @@ class _LatestPageState extends State<LatestPage> {
   void initState() {
     super.initState();
     _carouselBloc = ApiDataBloc<ArticleModel>(
-        query: QueryParams(category: 'general', pageSize: 5),
-        maxResult: 5)
+        query: QueryParams(category: 'general', pageSize: 5), maxResult: 5)
       ..add(ApiDataPagination());
 
     _articleBloc = ApiDataBloc<ArticleModel>(maxResult: 10, query: _query);
@@ -46,6 +47,19 @@ class _LatestPageState extends State<LatestPage> {
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [
+          SliverToBoxAdapter(
+            child: HeaderSearchWidget(
+              // onChange: executeSearch,
+              // onChoose: setCategory,
+              categoryNotifier: ValueNotifier(null),
+              onTab: () => NavigationBarController.of(context).setIndex(1),
+            ),
+          ),
+          const SliverToBoxAdapter(
+            child: SizedBox(
+              height: 12,
+            ),
+          ),
           SliverToBoxAdapter(
             child: CarouselHeaderWidget(carouselBloc: _carouselBloc),
           ),
