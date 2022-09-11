@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:aagel/src/core/utils/enums.dart';
 import 'package:flutter/material.dart';
 import '../../../../../core/utils/query_params.dart';
 import '../../../../../data/models/article_model.dart';
@@ -21,16 +22,18 @@ class _SearchPageState extends State<SearchPage> {
   late ApiDataBloc<ArticleModel> _searchBloc;
   Timer? _debounce;
 
-  String? currentSearch;
+  String? _currentSearch;
+  String? _searchCategory;
 
-  late final ValueNotifier<bool> _notifier;
+  late final ValueNotifier<bool> _searchNotifier;
+  late final ValueNotifier<NewsCategory?> _categoryNotifier;
 
   @override
   void initState() {
     super.initState();
     widget.isSearch = false;
-    _notifier = ValueNotifier<bool>(widget.isSearch);
-    // _query = QueryParams(pageSize: 10);
+    _searchNotifier = ValueNotifier<bool>(widget.isSearch);
+    _categoryNotifier = ValueNotifier<NewsCategory?>(null);
     _searchBloc = ApiDataBloc<ArticleModel>(query: _query, maxResult: 50);
   }
 
@@ -38,24 +41,6 @@ class _SearchPageState extends State<SearchPage> {
   void dispose() {
     _debounce?.cancel();
     super.dispose();
-  }
-
-  executeSearch(String? searchValue) {
-    String? temp = searchValue?.trim();
-
-    if (_debounce?.isActive ?? false) _debounce?.cancel();
-    _debounce = Timer(const Duration(seconds: 1), () {
-      if ((temp != null && temp.isNotEmpty && temp.length > 1) &&
-          currentSearch != temp) {
-        currentSearch = temp;
-        _query.queryWord = temp;
-        _notifier.value = widget.isSearch = true;
-        _searchBloc.controller.refresh();
-      } else if (temp == null || temp.isEmpty) {
-        _notifier.value = widget.isSearch = false;
-        currentSearch = null;
-      }
-    });
   }
 
   @override
@@ -66,12 +51,9 @@ class _SearchPageState extends State<SearchPage> {
         SliverToBoxAdapter(
           child: HeaderSearchWidget(
             onChange: executeSearch,
-            onTab: () {
-              if (currentSearch != null && currentSearch!.isNotEmpty) {
-                _notifier.value = widget.isSearch = true;
-                _searchBloc.controller.refresh();
-              }
-            },
+            onChoose: setCategory,
+            categoryNotifier: _categoryNotifier,
+            onTab: () => preparingSearchData(_currentSearch),
           ),
         ),
         SliverPadding(
@@ -81,7 +63,7 @@ class _SearchPageState extends State<SearchPage> {
               childCount: 1,
               (context, index) {
                 return SearchBodyWidget(
-                  notifier: _notifier,
+                  notifier: _searchNotifier,
                   searchBloc: _searchBloc,
                 );
               },
@@ -90,5 +72,51 @@ class _SearchPageState extends State<SearchPage> {
         ),
       ],
     );
+  }
+
+  executeSearch(String? searchValue) {
+    String? newSearchValue = searchValue?.trim();
+
+    if (_debounce?.isActive ?? false) _debounce?.cancel();
+    _debounce = Timer(const Duration(seconds: 1), () {
+      if ((newSearchValue != null &&
+              newSearchValue.isNotEmpty &&
+              newSearchValue.length > 1) &&
+          (_currentSearch != newSearchValue)) {
+        preparingSearchData(newSearchValue);
+      } else if (_searchCategory != _categoryNotifier.value?.category) {
+        preparingSearchData(newSearchValue);
+      } else if (newSearchValue == null || newSearchValue.isEmpty) {
+        preparingSearchData(newSearchValue);
+      }
+    });
+  }
+
+  setCategory(NewsCategory? newCategorySearch) {
+    if (_searchCategory != newCategorySearch?.category) {
+      _query.category = newCategorySearch?.category;
+      _searchBloc.controller.refresh();
+    }
+    _categoryNotifier.value = newCategorySearch;
+    _searchCategory = newCategorySearch?.category;
+  }
+
+  preparingSearchData(String? newSearchValue) {
+    if (newSearchValue != null && newSearchValue.isNotEmpty) {
+      _currentSearch = newSearchValue;
+      _query.queryWord = newSearchValue;
+      if (_categoryNotifier.value != null) {
+        _query.category = _categoryNotifier.value?.category;
+      } else {
+        _query.category = null;
+      }
+      _searchNotifier.value = widget.isSearch = true;
+      _searchBloc.controller.refresh();
+    } else {
+      _searchNotifier.value = widget.isSearch = false;
+      _categoryNotifier.value = null;
+      _searchCategory = null;
+      _currentSearch = null;
+    }
   }
 }
