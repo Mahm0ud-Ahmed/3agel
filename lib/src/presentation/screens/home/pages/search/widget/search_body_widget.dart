@@ -26,7 +26,10 @@ class SearchBodyWidget extends StatelessWidget {
           children: [
             !notifier.value!
                 ? FittedBox(
-                    child: Assets.images.searchingData.svg(),
+                    child: Assets.images.searchingData.svg(
+                      height: 250,
+                      width: 250,
+                    ),
                   )
                 : Expanded(
                     child: Column(

@@ -26,6 +26,7 @@ class HeaderSearchWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return SizedBox(
       height: 38,
+      width: double.infinity,
       child: Row(
         children: [
           Expanded(

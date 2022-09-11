@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:aagel/src/core/utils/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../../../../core/config/themes/theme_manager.dart';
 import '../../../../../core/utils/query_params.dart';
 import '../../../../../data/models/article_model.dart';
 import '../../../../controllers/data_bloc/api_data_bloc.dart';
@@ -52,8 +53,14 @@ class _SearchPageState extends State<SearchPage> {
     return CustomScrollView(
       physics: const BouncingScrollPhysics(),
       slivers: [
-        SliverToBoxAdapter(
-          child: BlocBuilder<SearchController, SearchModel>(
+        SliverAppBar(
+          titleSpacing: 0,
+          pinned: true,
+          snap: false,
+          floating: false,
+          // elevation: 2,
+          shadowColor: ThemeManager().appColor[2],
+          title: BlocBuilder<SearchController, SearchModel>(
             builder: (context, state) {
               if (state.searchCharacter != null) {
                 if (state.category != null) {

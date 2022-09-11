@@ -1,10 +1,13 @@
 import 'package:aagel/src/presentation/controllers/search_controller.dart';
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import '../../../../../core/config/l10n/generated/l10n.dart';
 import '../../../../../core/utils/enums.dart';
 import '../../../../../core/utils/query_params.dart';
 import '../../../../../data/models/article_model.dart';
 import '../../../../controllers/data_bloc/api_data_bloc.dart';
 import '../../../../controllers/navigation_bar_controller.dart';
+import '../../../../widgets/custom_container_with_icon.dart';
 import '../../../../widgets/header_search_widget.dart';
 import 'widget/carousel_header_widget.dart';
 import 'widget/category_news_list_widget.dart';
@@ -33,7 +36,9 @@ class _LatestPageState extends State<LatestPage> {
   void initState() {
     super.initState();
     _carouselBloc = ApiDataBloc<ArticleModel>(
-        query: QueryParams(category: NewsCategory.general.category, pageSize: 5), maxResult: 5)
+        query:
+            QueryParams(category: NewsCategory.general.category, pageSize: 5),
+        maxResult: 5)
       ..add(ApiDataPagination());
 
     _articleBloc = ApiDataBloc<ArticleModel>(maxResult: 10, query: _query);
@@ -50,6 +55,23 @@ class _LatestPageState extends State<LatestPage> {
       child: CustomScrollView(
         physics: const BouncingScrollPhysics(),
         slivers: [
+          SliverAppBar(
+            pinned: true,
+            title: Row(
+              children: [
+                const CustomContainerWithIcon(
+                  child: FaIcon(
+                    FontAwesomeIcons.globe,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(
+                  width: 12,
+                ),
+                Text(S().app_bar_title),
+              ],
+            ),
+          ),
           SliverToBoxAdapter(
             child: HeaderSearchWidget(
               onChange: (search) => searchCharacter = search,
