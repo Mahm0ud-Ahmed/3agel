@@ -33,7 +33,7 @@ class _LatestPageState extends State<LatestPage> {
   void initState() {
     super.initState();
     _carouselBloc = ApiDataBloc<ArticleModel>(
-        query: QueryParams(category: 'general', pageSize: 5), maxResult: 5)
+        query: QueryParams(category: NewsCategory.general.category, pageSize: 5), maxResult: 5)
       ..add(ApiDataPagination());
 
     _articleBloc = ApiDataBloc<ArticleModel>(maxResult: 10, query: _query);
