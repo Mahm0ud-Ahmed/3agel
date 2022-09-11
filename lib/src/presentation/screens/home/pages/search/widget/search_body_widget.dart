@@ -43,7 +43,8 @@ class SearchBodyWidget extends StatelessWidget {
                               crossAxisSpacing: 8,
                               mainAxisSpacing: 8,
                             ),
-                            builderDelegate: PagedChildBuilderDelegate<ArticleModel>(
+                            builderDelegate:
+                                PagedChildBuilderDelegate<ArticleModel>(
                               itemBuilder: (context, item, index) {
                                 return CategoryNewsItemWidget(
                                   article: item,
@@ -74,7 +75,9 @@ class SearchBodyWidget extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const SizedBox(height: 100,)
+                        const SizedBox(
+                          height: 100,
+                        )
                       ],
                     ),
                   ),
