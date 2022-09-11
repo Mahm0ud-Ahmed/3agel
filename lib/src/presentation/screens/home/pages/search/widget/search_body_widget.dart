@@ -25,8 +25,7 @@ class SearchBodyWidget extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             !notifier.value!
-                ? AspectRatio(
-                    aspectRatio: 1,
+                ? FittedBox(
                     child: Assets.images.searchingData.svg(),
                   )
                 : Expanded(
