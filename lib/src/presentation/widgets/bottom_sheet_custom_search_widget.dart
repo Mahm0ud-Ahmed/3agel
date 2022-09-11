@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/config/themes/theme_manager.dart';
-import '../../../../../../core/utils/enums.dart';
-import '../../../../../controllers/setting_helper.dart';
+import '../../core/config/themes/theme_manager.dart';
+import '../../core/utils/enums.dart';
+import '../controllers/setting_helper.dart';
 
 class BottomSheetCustomSearchWidget extends StatelessWidget {
   final ValueNotifier<NewsCategory?>? categoryNotifier;

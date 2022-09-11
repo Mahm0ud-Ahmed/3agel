@@ -1,10 +1,10 @@
 import 'package:aagel/src/core/utils/enums.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/config/themes/theme_manager.dart';
-import '../../../../../widgets/custom_container_with_icon.dart';
-import '../../../../../widgets/generic_text_field.dart';
-import '../../../../../widgets/bottom_sheet_custom_search_widget.dart';
+import '../../core/config/themes/theme_manager.dart';
+import 'bottom_sheet_custom_search_widget.dart';
+import 'custom_container_with_icon.dart';
+import 'generic_text_field.dart';
 
 class HeaderSearchWidget extends StatelessWidget {
   Function(String)? onChange;
