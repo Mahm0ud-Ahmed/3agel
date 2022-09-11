@@ -12,9 +12,9 @@ import '../../../../widgets/header_search_widget.dart';
 import 'widget/search_body_widget.dart';
 
 class SearchPage extends StatefulWidget {
-  bool isSearch;
-
-  SearchPage({super.key, this.isSearch = false});
+  const SearchPage({
+    super.key,
+  });
 
   @override
   State<SearchPage> createState() => _SearchPageState();
@@ -23,19 +23,20 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   final QueryParams _query = QueryParams(pageSize: 10);
   late ApiDataBloc<ArticleModel> _searchBloc;
+  late final ValueNotifier<bool> _searchNotifier;
+  late final ValueNotifier<NewsCategory?> _categoryNotifier;
+
+  late bool isSearch;
   Timer? _debounce;
 
   String? _currentSearch;
   String? _searchCategory;
 
-  late final ValueNotifier<bool> _searchNotifier;
-  late final ValueNotifier<NewsCategory?> _categoryNotifier;
-
   @override
   void initState() {
     super.initState();
-    widget.isSearch = false;
-    _searchNotifier = ValueNotifier<bool>(widget.isSearch);
+    isSearch = false;
+    _searchNotifier = ValueNotifier<bool>(isSearch);
     _categoryNotifier = ValueNotifier<NewsCategory?>(null);
     _searchBloc = ApiDataBloc<ArticleModel>(query: _query, maxResult: 50);
   }
@@ -54,6 +55,12 @@ class _SearchPageState extends State<SearchPage> {
         SliverToBoxAdapter(
           child: BlocBuilder<SearchController, SearchModel>(
             builder: (context, state) {
+              if (state.searchCharacter != null) {
+                if (state.category != null) {
+                  setCategory(state.category);
+                }
+                preparingSearchData(state.searchCharacter);
+              }
               return HeaderSearchWidget(
                 initialValue: state.searchCharacter,
                 onChange: executeSearch,
@@ -119,10 +126,10 @@ class _SearchPageState extends State<SearchPage> {
       } else {
         _query.category = null;
       }
-      _searchNotifier.value = widget.isSearch = true;
+      _searchNotifier.value = isSearch = true;
       _searchBloc.controller.refresh();
     } else {
-      _searchNotifier.value = widget.isSearch = false;
+      _searchNotifier.value = isSearch = false;
       _categoryNotifier.value = null;
       _searchCategory = null;
       _currentSearch = null;
