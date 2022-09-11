@@ -5,10 +5,14 @@ import '../../../../../../core/utils/enums.dart';
 import '../../../../../controllers/setting_helper.dart';
 
 class BottomSheetCustomSearchWidget extends StatelessWidget {
-  final ValueNotifier<NewsCategory?> _categoryNotifier =
-      ValueNotifier<NewsCategory?>(null);
+  final ValueNotifier<NewsCategory?>? categoryNotifier;
+  final Function(NewsCategory?)? onChoose;
 
-  BottomSheetCustomSearchWidget({super.key});
+  const BottomSheetCustomSearchWidget({
+    super.key,
+    this.onChoose,
+    this.categoryNotifier,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -24,19 +28,15 @@ class BottomSheetCustomSearchWidget extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             children: List<NewsCategory>.unmodifiable(NewsCategory.values)
                 .map(
-                  (NewsCategory item) => ValueListenableBuilder<NewsCategory?>(
-                    valueListenable: _categoryNotifier,
-                    builder: (context, category, child) {
-                      return RadioListTile<NewsCategory>(
-                        value: item,
-                        groupValue: category,
-                        onChanged: (NewsCategory? value) {
-                          _categoryNotifier.value = value;
-                          Navigator.pop(context);
-                        },
-                        title: Text(SettingHelper.setSectionName(item)),
-                      );
+                  (NewsCategory item) => RadioListTile<NewsCategory>(
+                    value: item,
+                    groupValue: categoryNotifier?.value,
+                    onChanged: (NewsCategory? value) {
+                      categoryNotifier?.value = value;
+                      onChoose?.call(value);
+                      Navigator.pop(context);
                     },
+                    title: Text(SettingHelper.setSectionName(item)),
                   ),
                 )
                 .toList(),
