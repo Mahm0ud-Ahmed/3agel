@@ -28,6 +28,8 @@ class LanguageManager extends ChangeNotifier {
         .saveString(Constant.kLocaleCountryCode, newLocale.countryCode ?? 'us');
   }
 
+  bool get isRTL => locale?.languageCode == 'ar';
+
   static LanguageManager? _instance;
 
   LanguageManager._init();

@@ -1,3 +1,4 @@
+import 'package:aagel/src/core/config/themes/language_manager.dart';
 import 'package:aagel/src/data/models/article_model.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
@@ -17,7 +18,7 @@ class CategoryNewsItemWidget extends StatelessWidget {
       builder: (context, constraints) {
         return DecoratedBox(
           decoration: BoxDecoration(
-              color: ThemeManager().appColor[0],
+              color: ThemeManager().appColor[2],
               borderRadius: BorderRadius.circular(16),
               border: Border.all(
                   width: 0.3,
@@ -25,9 +26,14 @@ class CategoryNewsItemWidget extends StatelessWidget {
           child: Row(
             children: [
               ClipRRect(
-                borderRadius: const BorderRadius.only(
-                    bottomLeft: Radius.circular(16),
-                    topLeft: Radius.circular(16)),
+                borderRadius: BorderRadius.horizontal(
+                  left: LanguageManager().isRTL
+                      ? const Radius.circular(0)
+                      : const Radius.circular(16),
+                  right: LanguageManager().isRTL
+                      ? const Radius.circular(16)
+                      : const Radius.circular(0),
+                ),
                 child: SizedBox(
                   height: double.infinity,
                   width: constraints.maxWidth * 0.35,
