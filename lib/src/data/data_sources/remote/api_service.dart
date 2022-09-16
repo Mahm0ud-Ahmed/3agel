@@ -1,7 +1,8 @@
 
 import 'package:dio/dio.dart';
 import 'package:retrofit/retrofit.dart';
-import 'package:aagel/src/core/utils/constant.dart';
+
+import '../../../core/utils/constant.dart';
 
 part 'api_service.g.dart';
 
