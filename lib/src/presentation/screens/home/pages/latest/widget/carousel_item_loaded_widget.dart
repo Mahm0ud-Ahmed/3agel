@@ -35,6 +35,7 @@ class CarouselItemLoadedWidget extends StatelessWidget {
             },
           ),
           itemBuilder:
+          
               (BuildContext context, int itemIndex, int pageViewIndex) {
             return ClipRRect(
               borderRadius: BorderRadius.circular(14),
