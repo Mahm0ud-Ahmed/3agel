@@ -1,3 +1,4 @@
+import 'package:aagel/src/core/utils/extension.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
@@ -20,7 +21,7 @@ class CarouselItemLoadedWidget extends StatelessWidget {
         CarouselSlider.builder(
           itemCount: article?.length,
           options: CarouselOptions(
-            height: MediaQuery.of(context).size.height * 0.4,
+            height: context.isPortrait ? context.screenSize.height * 0.41 : context.screenSize.height * 0.60,
             viewportFraction: 0.92,
             enableInfiniteScroll: true,
             reverse: false,

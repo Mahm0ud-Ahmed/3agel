@@ -1,3 +1,4 @@
+import 'package:aagel/src/core/utils/extension.dart';
 import 'package:aagel/src/presentation/screens/home/pages/latest/widget/carousel_item_loaded_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -15,7 +16,7 @@ class CarouselHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.of(context).size.height * 0.44,
+      height: context.isPortrait ? context.screenSize.height * 0.44 : context.screenSize.height * 0.65,
       width: double.infinity,
       child: BlocBuilder(
         bloc: carouselBloc,
