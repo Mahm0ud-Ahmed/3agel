@@ -65,17 +65,20 @@ class _BookmarkPageState extends State<BookmarkPage> {
             child: Text('There are not data')
           );
         }
-        return SingleChildScrollView(
-          child: Column(
-              children: List.generate(
-                10,
-                (index) => const CustomShimmerWidget(
-                  height: 120,
-                  width: 400,
-                  radius: 16,
-                ),
-              ),
+        return GridView(
+          gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+            maxCrossAxisExtent: 400,
+            mainAxisExtent: 120,
+            crossAxisSpacing: 12,
+            mainAxisSpacing: 12,
+          ),
+          children: List.generate(5, (index) => 
+            const CustomShimmerWidget(
+              height: 120,
+              width: 400,
+              radius: 16,
             ),
+          ),
         );
       },
     );
