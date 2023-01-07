@@ -19,6 +19,10 @@
     alt="adam-pw" width="200" height="400"
   />
   <img 
+    src="https://user-images.githubusercontent.com/58610163/211170699-035da330-b801-4b77-977d-6704bd9da714.jpg" 
+    alt="adam-pw" width="200" height="400"
+  />
+  <img 
     src="https://user-images.githubusercontent.com/58610163/211170708-13cd8427-d0c0-40a4-bf70-06702828e83e.jpg" 
     alt="adam-pw" width="200" height="400"
   />
@@ -50,8 +54,5 @@
     src="https://user-images.githubusercontent.com/58610163/211170748-d419382c-3e7b-4191-b1de-7c6438b7bd5c.jpg" 
     alt="adam-pw" width="200" height="400"
   />
-  <img 
-    src="https://user-images.githubusercontent.com/58610163/211170699-035da330-b801-4b77-977d-6704bd9da714.jpg" 
-    alt="adam-pw" width="200" height="400"
-  />
+  
 </p>
