@@ -1,4 +1,3 @@
-import 'package:aagel/src/core/utils/data_state.dart';
 import 'package:aagel/src/data/data_sources/local/local_service.dart';
 import 'package:aagel/src/data/models/article_model.dart';
 import 'package:retrofit/dio.dart';
@@ -47,5 +46,15 @@ class AppRepositoryImp extends IAppRepository{
   @override
   Future<List<ArticleModel>> getCacheData() async{
     return await _localService.getAllArticle();
+  }
+  
+  @override
+  Future<bool> deleteLocal(String url) async{
+    return await _localService.removeArticle(url);
+  }
+  
+  @override
+  Future<bool> storeLocal(ArticleModel article) async{
+    return await _localService.addArticle(article);
   }
 }

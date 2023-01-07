@@ -9,4 +9,6 @@ abstract class IAppRepository{
   Future<HttpResponse> getShowDataByPath(QueryParams params);
   
   Future<List<ArticleModel>> getCacheData();
+  Future<bool> storeLocal(ArticleModel article);
+  Future<bool> deleteLocal(String url);
 }
