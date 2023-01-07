@@ -85,8 +85,7 @@ class _CategoryNewsItemWidgetState extends State<CategoryNewsItemWidget> {
               ),
               Expanded(
                 child: Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
+                  padding: const EdgeInsetsDirectional.only(start: 8, end: 8, top: 8),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -97,8 +96,13 @@ class _CategoryNewsItemWidgetState extends State<CategoryNewsItemWidget> {
                         overflow: TextOverflow.ellipsis,
                         maxLines: 2,
                       ),
+                      const SizedBox(height: 8,),
                       Text(
                         '${S().category_item_source} ${widget.article.source?['name']}',
+                        style: TextStyle(
+                          color: ThemeManager().appColor[6],
+                          fontSize: 14
+                        ),
                         softWrap: true,
                         overflow: TextOverflow.ellipsis,
                         maxLines: 1,
@@ -106,12 +110,16 @@ class _CategoryNewsItemWidgetState extends State<CategoryNewsItemWidget> {
                       Expanded(
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          crossAxisAlignment: CrossAxisAlignment.end,
+                          crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Flexible(
                               child: Text(
                                 DateFormat('dd/MM/yyyy hh:mm a').format(
                                     DateTime.tryParse(widget.article.publishedAt!)!),
+                                style: TextStyle(
+                                  color: ThemeManager().appColor[6],
+                                  fontSize: 14
+                                ),
                                 softWrap: true,
                                 overflow: TextOverflow.ellipsis,
                                 maxLines: 1,
@@ -137,8 +145,9 @@ class _CategoryNewsItemWidgetState extends State<CategoryNewsItemWidget> {
                                     splashColor: Colors.transparent,
                                     highlightColor: Colors.transparent,
                                     icon: Icon(
-                                      value ? Icons.star_rate_rounded : Icons.star_outline,
-                                      size: 18,
+                                      value ? Icons.star_rate_rounded : Icons.star_border_rounded,
+                                      size: 24,
+                                      color: ThemeManager().appColor[4],
                                     ),
                                   );
                                 },
