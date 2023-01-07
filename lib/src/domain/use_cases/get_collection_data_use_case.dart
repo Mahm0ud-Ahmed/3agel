@@ -9,7 +9,7 @@ import 'package:aagel/src/core/utils/data_state.dart';
 import 'package:aagel/src/core/utils/query_params.dart';
 import 'package:aagel/src/domain/repositories/i_app_repository.dart';
 
-class GetCollectionDataUseCase<MODEL> extends UseCase{
+class GetCollectionDataUseCase<MODEL> extends UseCase<QueryParams>{
 
   final IAppRepository _appRepository;
   DataReflection<List<MODEL>>? _reflection;
@@ -17,10 +17,10 @@ class GetCollectionDataUseCase<MODEL> extends UseCase{
   GetCollectionDataUseCase(this._appRepository);
   
   @override
-  Future<DataState> call({required QueryParams params}) async {
+  Future<DataState> call({QueryParams? params}) async {
     _reflection = DataReflection();
     try {
-      HttpResponse response = await _appRepository.getAllData(params);
+      HttpResponse response = await _appRepository.getAllData(params!);
       if(response.response.statusCode == HttpStatus.ok){
         DataState dataModel = _reflection!.reflectResponse<MODEL>(response);
         return DataSuccess(dataModel.data);
