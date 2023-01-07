@@ -1,6 +1,6 @@
 # aagel
 
-3agel App It is an application designed to follwo worled news.
+3agel App It is an application designed to follwo world news.
 
 
 ## Screenshots
