@@ -5,6 +5,7 @@ import 'package:aagel/src/data/repositories/app_repository_imp.dart';
 
 import '../../domain/repositories/i_app_repository.dart';
 import '../../presentation/controllers/data_bloc/api_data_bloc.dart';
+import '../services/cache_service.dart';
 import '../services/dio_service.dart';
 import '../services/setting_service.dart';
 import '../services/storage_service.dart';
@@ -24,5 +25,6 @@ Future<void> initializeDependencies() async {
 
   await StorageService().initialize();
   await SettingService().initialize();
+  await CacheService().initialize();
 
 }
