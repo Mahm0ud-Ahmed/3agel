@@ -90,9 +90,8 @@ class ThemeManager extends ChangeNotifier {
       statusBarColor: _theme.appColor[0],
       statusBarIconBrightness: isLight ? Brightness.dark : Brightness.light,
       statusBarBrightness: isLight ? Brightness.dark : Brightness.light,
-      systemNavigationBarColor: _theme.primarySwatch,
-      systemNavigationBarDividerColor:
-          isLight ? _theme.appColor[0] : _theme.appColor[6],
+      systemNavigationBarColor:  _theme.appColor[0],
+      systemNavigationBarDividerColor: _theme.appColor[0],
       systemNavigationBarIconBrightness: Brightness.light,
     ));
   }
