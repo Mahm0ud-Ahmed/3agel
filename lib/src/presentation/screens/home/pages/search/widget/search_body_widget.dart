@@ -42,8 +42,8 @@ class SearchBodyWidget extends StatelessWidget {
                                 const SliverGridDelegateWithMaxCrossAxisExtent(
                               maxCrossAxisExtent: 400,
                               mainAxisExtent: 120,
-                              crossAxisSpacing: 8,
-                              mainAxisSpacing: 8,
+                              crossAxisSpacing: 12,
+                              mainAxisSpacing: 12,
                             ),
                             builderDelegate:
                                 PagedChildBuilderDelegate<ArticleModel>(

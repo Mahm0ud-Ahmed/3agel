@@ -12,7 +12,8 @@ import '../controllers/data_bloc/api_data_bloc.dart';
 
 class CategoryNewsItemWidget extends StatefulWidget {
   final ArticleModel article;
-  const CategoryNewsItemWidget({super.key, required this.article});
+  final Function(ArticleModel)? onDelete;
+  const CategoryNewsItemWidget({super.key, required this.article, this.onDelete});
 
   @override
   State<CategoryNewsItemWidget> createState() => _CategoryNewsItemWidgetState();
@@ -20,6 +21,21 @@ class CategoryNewsItemWidget extends StatefulWidget {
 
 class _CategoryNewsItemWidgetState extends State<CategoryNewsItemWidget> {
   final ApiDataBloc<ArticleModel> _bookmark = ApiDataBloc();
+  late final ValueNotifier<bool> _bookmarkNotifier;
+  bool isBookmark = false;
+
+  @override
+  void initState() {
+    super.initState();
+    _bookmarkNotifier = ValueNotifier(isBookmark);
+  }
+
+  @override
+  void didChangeDependencies()async  {
+    super.didChangeDependencies();
+    isBookmark = await _bookmark.isBookmark(widget.article.url!);
+    _bookmarkNotifier.value = isBookmark;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -101,23 +117,32 @@ class _CategoryNewsItemWidgetState extends State<CategoryNewsItemWidget> {
                                 maxLines: 1,
                               ),
                             ),
-                            BlocBuilder<ApiDataBloc, ApiDataState>(
+                            BlocListener(
                               bloc: _bookmark,
-                              builder: (context, state) {
-                                return IconButton(
-                                  onPressed: () {
-                                    _bookmark.add(ToggleSaveOrDelete(false, article: widget.article));
-                                  },
-                                  padding: EdgeInsets.zero,
-                                  constraints: const BoxConstraints(),
-                                  splashColor: Colors.transparent,
-                                  highlightColor: Colors.transparent,
-                                  icon: Icon(
-                                    (state is ApiDataLoaded<bool> && state.data != null && state.data == true) ? Icons.star_rate_rounded : Icons.star_outline,
-                                    size: 18,
-                                  ),
-                                );
+                              listener: (context, state) async{
+                                if(state is ApiDataLoaded<bool> && state.data != null){
+                                  _bookmarkNotifier.value =  await _bookmark.isBookmark(widget.article.url!);
+                                }
                               },
+                              child: ValueListenableBuilder<bool>(
+                                valueListenable: _bookmarkNotifier,
+                                builder: (context, value, child) {
+                                  return IconButton(
+                                    onPressed: () async{
+                                      _bookmark.add(ToggleSaveOrDelete(value, article: widget.article));
+                                      widget.onDelete?.call(widget.article);
+                                    },
+                                    padding: EdgeInsets.zero,
+                                    constraints: const BoxConstraints(),
+                                    splashColor: Colors.transparent,
+                                    highlightColor: Colors.transparent,
+                                    icon: Icon(
+                                      value ? Icons.star_rate_rounded : Icons.star_outline,
+                                      size: 18,
+                                    ),
+                                  );
+                                },
+                              ),
                             ),
                           ],
                         ),

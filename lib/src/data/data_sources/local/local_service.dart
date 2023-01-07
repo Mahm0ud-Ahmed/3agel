@@ -6,6 +6,7 @@ abstract class LocalService{
   Future<List<ArticleModel>> getAllArticle();
   Future<bool> addArticle(ArticleModel article);
   Future<bool> removeArticle(String url);
+  Future<bool> checkArticle(String url);
 }
 
 class LocalServiceImpl implements LocalService{
@@ -60,8 +61,21 @@ class LocalServiceImpl implements LocalService{
     return false;
   }
 
+  @override
+  Future<bool> checkArticle(String url) async{
+    Box box = await _openBox(Constant.kBoxNameHive);
+    if(box.isOpen){
+      return box.containsKey(url) ? true : false;
+    }else{
+      box = await _openBox(Constant.kBoxNameHive);
+      return box.containsKey(url) ? true : false;
+    }
+  }
+
   Future<Box> _openBox(String boxName) async{
     return await Hive.openBox(boxName);
   }
+  
+  
 
 }

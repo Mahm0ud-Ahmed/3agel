@@ -11,4 +11,5 @@ abstract class IAppRepository{
   Future<List<ArticleModel>> getCacheData();
   Future<bool> storeLocal(ArticleModel article);
   Future<bool> deleteLocal(String url);
+  Future<bool> checkArticle(String url);
 }

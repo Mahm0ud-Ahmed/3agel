@@ -57,4 +57,9 @@ class AppRepositoryImp extends IAppRepository{
   Future<bool> storeLocal(ArticleModel article) async{
     return await _localService.addArticle(article);
   }
+  
+  @override
+  Future<bool> checkArticle(String url) async{
+    return await _localService.checkArticle(url);
+  }
 }

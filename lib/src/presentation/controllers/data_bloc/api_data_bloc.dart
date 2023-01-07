@@ -1,4 +1,5 @@
 import 'package:aagel/src/data/models/article_model.dart';
+import 'package:aagel/src/domain/use_cases/local/check_in_bookmark.dart';
 import 'package:aagel/src/domain/use_cases/local/delete_article_in_local.dart';
 import 'package:aagel/src/domain/use_cases/local/save_article_in_local.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -30,6 +31,7 @@ class ApiDataBloc<MODEL> extends Bloc<ApiDataEvent, ApiDataState> {
   final GetCacheLocalData _getCacheLocalData = GetCacheLocalData(injector());
   final SaveArticleInLocal _saveArticleInLocal = SaveArticleInLocal(injector());
   final DeleteArticleInLocal _deleteArticleInLocal = DeleteArticleInLocal(injector());
+  final CheckInBookmark _checkInBookmark = CheckInBookmark(injector());
 
   late PaginationCriteria _criteria;
   late PagingController<int, MODEL> controller;
@@ -176,6 +178,11 @@ class ApiDataBloc<MODEL> extends Bloc<ApiDataEvent, ApiDataState> {
     }else{
       emit(ApiDataError(data.error!));
     }
+  }
+
+  Future<bool> isBookmark(String url)async {
+    DataState<bool> data = await _checkInBookmark(params: url);
+    return data is DataSuccess<bool> ? data.data! : false;
   }
 
   /* Future<void> _getDataSingle(ApiDataSingle event, Emitter<ApiDataState> emit) async{
