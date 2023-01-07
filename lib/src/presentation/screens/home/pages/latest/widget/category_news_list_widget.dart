@@ -31,15 +31,23 @@ class CategoryNewsList extends StatelessWidget {
           );
         },
         firstPageProgressIndicatorBuilder: (context) {
-          return Column(
-            children: List.generate(
-              10,
-              (index) => const CustomShimmerWidget(
+          return GridView.builder(
+            gridDelegate: const SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: 400,
+              mainAxisExtent: 120,
+              crossAxisSpacing: 12,
+              mainAxisSpacing: 12,
+            ),
+            itemCount: 5,
+            itemBuilder: (context, index) {
+              return const CustomShimmerWidget(
                 height: 120,
                 width: 400,
                 radius: 16,
-              ),
-            ),
+              );
+            },
+            shrinkWrap: true,
+            primary: false,
           );
         },
         newPageProgressIndicatorBuilder: (context) {
@@ -60,6 +68,7 @@ class CategoryNewsList extends StatelessWidget {
           );
         },
       ),
+      shrinkWrapFirstPageIndicators: true,
     );
   }
 }
