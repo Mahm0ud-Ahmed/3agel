@@ -1,3 +1,4 @@
+import 'package:aagel/src/data/data_sources/local/local_service.dart';
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 import 'package:aagel/src/data/data_sources/remote/api_service.dart';
@@ -20,7 +21,8 @@ Future<void> initializeDependencies() async {
   injector.registerLazySingleton<Dio>(() => dioService);
   injector.registerLazySingleton<StorageService>(() => StorageService());
   injector.registerLazySingleton<ApiService>(() => ApiService(injector()));
-  injector.registerLazySingleton<IAppRepository>(() => AppRepositoryImp(injector()));
+  injector.registerLazySingleton<LocalService>(() => LocalServiceImpl());
+  injector.registerLazySingleton<IAppRepository>(() => AppRepositoryImp(injector(), injector()));
   injector.registerFactory<ApiDataBloc>(() => ApiDataBloc());
 
   await StorageService().initialize();
