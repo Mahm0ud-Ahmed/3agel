@@ -11,7 +11,7 @@ import 'package:aagel/src/domain/repositories/i_app_repository.dart';
 import '../../data/models/api_pagination_model.dart';
 
 
-class GetPaginationDataUseCase<MODEL> extends UseCase{
+class GetPaginationDataUseCase<MODEL> extends UseCase<QueryParams>{
 
   final IAppRepository _appRepository;
   ApiPaginationModel<MODEL>? _paginationModel;
@@ -19,9 +19,9 @@ class GetPaginationDataUseCase<MODEL> extends UseCase{
   GetPaginationDataUseCase(this._appRepository);
   
   @override
-  Future<DataState> call({required QueryParams params}) async {
+  Future<DataState> call({QueryParams? params}) async {
     try {
-      HttpResponse response = await _appRepository.getAllData(params);
+      HttpResponse response = await _appRepository.getAllData(params!);
       if(response.response.statusCode == HttpStatus.ok){
         _paginationModel = ApiPaginationModel.fromJson(response.response.data);
           return DataSuccess(_paginationModel);
