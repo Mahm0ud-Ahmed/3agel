@@ -8,5 +8,6 @@ class Constant{
   static const String kThemeModeKey = 'mode';
   static const String kLocaleLanguageCode = 'locale.language';
   static const String kLocaleCountryCode = 'locale.country';
+  static const String kBoxNameHive = '3agel.news_app_article';
 
 }
