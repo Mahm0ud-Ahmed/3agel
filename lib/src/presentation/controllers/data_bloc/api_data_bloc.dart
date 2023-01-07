@@ -1,3 +1,6 @@
+import 'package:aagel/src/data/models/article_model.dart';
+import 'package:aagel/src/domain/use_cases/local/delete_article_in_local.dart';
+import 'package:aagel/src/domain/use_cases/local/save_article_in_local.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:equatable/equatable.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
@@ -10,8 +13,8 @@ import 'package:aagel/src/domain/use_cases/get_pagination_data_use_case.dart';
 
 import '../../../core/config/injector.dart';
 import '../../../data/models/api_pagination_model.dart';
-import '../../../domain/use_cases/get_cache_local_data.dart';
 import '../../../domain/use_cases/get_data_by_path_use_case.dart';
+import '../../../domain/use_cases/local/get_cache_local_data.dart';
 
 part 'api_data_event.dart';
 part 'api_data_state.dart';
@@ -25,6 +28,8 @@ class ApiDataBloc<MODEL> extends Bloc<ApiDataEvent, ApiDataState> {
       GetDataByPathUseCase(injector());
   
   final GetCacheLocalData _getCacheLocalData = GetCacheLocalData(injector());
+  final SaveArticleInLocal _saveArticleInLocal = SaveArticleInLocal(injector());
+  final DeleteArticleInLocal _deleteArticleInLocal = DeleteArticleInLocal(injector());
 
   late PaginationCriteria _criteria;
   late PagingController<int, MODEL> controller;
@@ -39,13 +44,12 @@ class ApiDataBloc<MODEL> extends Bloc<ApiDataEvent, ApiDataState> {
     on<ApiDataByPath>((event, emit) => _getDataByPath(event, emit));
     on<ApiDataPagination>((event, emit) => _getDataPagination(event, emit));
 
+    on<GetDataStore>((event, emit) => _getDataFromLocal(event, emit));
+    on<ToggleSaveOrDelete>((event, emit) => _toggleArticle(event, emit));
+
     query = initialQuery();
     _criteria = PaginationCriteria();
     initializeController();
-
-    _getCacheLocalData.call().then((value) {
-      print(value.data);
-    });
   }
 
   QueryParams initialQuery() {
@@ -140,6 +144,37 @@ class ApiDataBloc<MODEL> extends Bloc<ApiDataEvent, ApiDataState> {
       emit(ApiDataLoaded<MODEL>(state.data));
     } else {
       emit(ApiDataError(state.error!));
+    }
+  }
+
+
+  Future<void> _getDataFromLocal(GetDataStore event, Emitter<ApiDataState> emit) async{
+    emit(const ApiDataLoading());
+    DataState<List<ArticleModel>> data = await _getCacheLocalData();
+    if(data is DataSuccess){
+      emit(ApiDataLoaded<List<ArticleModel>?>(data.data));
+    }else{
+      emit(ApiDataError(data.error!));
+    }
+  }
+
+  void toggleArticle({required bool isBookmark, ArticleModel? articleModel}){
+    add(ToggleSaveOrDelete(isBookmark, article: articleModel));
+  }
+
+  Future<void> _toggleArticle(ToggleSaveOrDelete event, Emitter<ApiDataState> emit) async{
+    emit(const ApiDataLoading());
+    DataState<bool> data;
+    if(event.isBookmark){
+      data = await _deleteArticleInLocal(params: event.article?.url);
+    }else{
+      data = await _saveArticleInLocal(params: event.article);
+    }
+    
+    if(data is DataSuccess){
+      emit(ApiDataLoaded<bool>(data.data!));
+    }else{
+      emit(ApiDataError(data.error!));
     }
   }
 

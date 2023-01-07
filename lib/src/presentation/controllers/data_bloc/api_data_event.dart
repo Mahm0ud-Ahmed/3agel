@@ -5,7 +5,7 @@ abstract class ApiDataEvent extends Equatable {
 
   QueryParams? queryParams;
 
-  ApiDataEvent(this.queryParams);
+  ApiDataEvent({this.queryParams});
 
   @override
   List<Object?> get props => [queryParams];
@@ -23,11 +23,24 @@ class ApiDataSingle extends ApiDataEvent {
 
 class ApiDataPagination extends ApiDataEvent {
 
-  ApiDataPagination({QueryParams? queryParams}) : super(queryParams);
+  ApiDataPagination({QueryParams? queryParams}) : super(queryParams: queryParams);
 }
 
 class ApiDataByPath extends ApiDataEvent {
   String path;
 
-  ApiDataByPath(this.path, {QueryParams? queryParams}) : super(queryParams);
+  ApiDataByPath(this.path, {QueryParams? queryParams}) : super(queryParams: queryParams);
+}
+
+class GetDataStore extends ApiDataEvent {
+  String boxName;
+
+  GetDataStore(this.boxName);
+}
+
+class ToggleSaveOrDelete extends ApiDataEvent {
+  bool isBookmark;
+  ArticleModel? article;
+
+  ToggleSaveOrDelete(this.isBookmark, {this.article});
 }
