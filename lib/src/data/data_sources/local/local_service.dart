@@ -15,12 +15,15 @@ class LocalServiceImpl implements LocalService{
     Box box = await _openBox(Constant.kBoxNameHive);
     if(box.isOpen){
       box.put(article.url, article);
+      Hive.close();
       return true;
     }else if(!box.isOpen){
       box = await _openBox(Constant.kBoxNameHive);
       box.put(article.url, article);
+      Hive.close();
       return true;
     }
+    Hive.close();
     return false;
   }
 
@@ -34,6 +37,7 @@ class LocalServiceImpl implements LocalService{
         articles.add(box.get(key));
       }
     }
+    Hive.close();
     return articles;
   }
 
@@ -42,14 +46,17 @@ class LocalServiceImpl implements LocalService{
     Box box = await _openBox(Constant.kBoxNameHive);
     if(box.isOpen && box.containsKey(url)){
       box.delete(url);
+      Hive.close();
       return true;
     }else if(!box.isOpen){
       box = await _openBox(Constant.kBoxNameHive);
       if(box.containsKey(url)){
         box.delete(url);
+        Hive.close();
         return true;
       }
     }
+    Hive.close();
     return false;
   }
 
