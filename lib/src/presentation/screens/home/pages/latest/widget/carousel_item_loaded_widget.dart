@@ -11,8 +11,9 @@ import '../../../../../../data/models/article_model.dart';
 class CarouselItemLoadedWidget extends StatelessWidget {
   final List<ArticleModel>? article;
   final ValueNotifier<int> _notifier = ValueNotifier<int>(0);
+  final double height;
 
-  CarouselItemLoadedWidget({super.key, required this.article});
+  CarouselItemLoadedWidget({super.key, required this.article, required this.height});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,8 @@ class CarouselItemLoadedWidget extends StatelessWidget {
         CarouselSlider.builder(
           itemCount: article?.length,
           options: CarouselOptions(
-            height: context.isPortrait ? context.screenSize.height * 0.41 : context.screenSize.height * 0.60,
+            // height: context.isPortrait ? context.screenSize.height * 0.41 : context.screenSize.height * 0.60,
+            height: height,
             viewportFraction: 0.92,
             enableInfiniteScroll: true,
             reverse: false,

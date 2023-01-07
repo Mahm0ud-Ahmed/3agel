@@ -16,14 +16,17 @@ class CarouselHeaderWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: context.isPortrait ? context.screenSize.height * 0.44 : context.screenSize.height * 0.65,
+      height: headerHeight(context),
       width: double.infinity,
       child: BlocBuilder(
         bloc: carouselBloc,
         builder: (context, state) {
           if (state is ApiDataLoaded<ApiPaginationModel<ArticleModel>> &&
               (state.data?.data != null && state.data!.data!.isNotEmpty)) {
-            return CarouselItemLoadedWidget(article: state.data?.data);
+            return CarouselItemLoadedWidget(
+              article: state.data?.data,
+              height: headerHeight(context) - 24,
+            );
           } else if (state is ApiDataLoading) {
             return const CustomShimmerWidget(
               margin: EdgeInsets.symmetric(horizontal: 12),
@@ -43,5 +46,9 @@ class CarouselHeaderWidget extends StatelessWidget {
         },
       ),
     );
+  }
+
+  double headerHeight(BuildContext context){
+    return context.isPortrait ? context.screenSize.height * 0.44 : context.screenSize.height * 0.65;
   }
 }
