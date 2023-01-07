@@ -1,3 +1,4 @@
+import 'package:aagel/src/core/utils/data_state.dart';
 import 'package:retrofit/dio.dart';
 import 'package:aagel/src/core/utils/query_params.dart';
 import 'package:aagel/src/domain/repositories/i_app_repository.dart';
@@ -38,5 +39,10 @@ class AppRepositoryImp extends IAppRepository{
       endpoint: params.endpoint!,
       pathId: params.pathId!,
     );
+  }
+
+  @override
+  Future<DataState> getCacheData() {
+    throw UnimplementedError();
   }
 }
