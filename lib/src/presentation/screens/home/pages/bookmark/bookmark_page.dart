@@ -1,4 +1,9 @@
+import 'package:aagel/src/core/utils/constant.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+
+import '../../../../../data/models/article_model.dart';
+import '../../../../controllers/data_bloc/api_data_bloc.dart';
 
 class BookmarkPage extends StatefulWidget {
   const BookmarkPage({super.key});
@@ -8,14 +13,25 @@ class BookmarkPage extends StatefulWidget {
 }
 
 class _BookmarkPageState extends State<BookmarkPage> {
-  // ApiDataBloc<ArticleModel> bloc = ApiDataBloc(query: QueryParams(category: 'general', pageSize: 5), maxResult: 5)..add(ApiDataPagination());
+  late final ApiDataBloc<ArticleModel> bloc;
+  @override
+  void initState() {
+    super.initState();
+    bloc = ApiDataBloc()..add(GetDataStore(Constant.kBoxNameHive));
+  }
   @override
   Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      color: Colors.amber,
-      child: Text('Bookmark')
+    return BlocBuilder(
+      bloc: bloc,
+      builder: (context, state) {
+        print(state);
+        return Container(
+          width: double.infinity,
+          height: double.infinity,
+          color: Colors.amber,
+          child: Text('Bookmark')
+        );
+      },
     );
 
   }
