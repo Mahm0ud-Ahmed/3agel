@@ -11,7 +11,7 @@ import 'package:aagel/src/domain/repositories/i_app_repository.dart';
 
 import '../../data/models/api_pagination_model.dart';
 
-class GetSingleDataUseCase<MODEL> extends UseCase{
+class GetSingleDataUseCase<MODEL> extends UseCase<QueryParams>{
 
   final IAppRepository _appRepository;
   DataReflection<MODEL>? _reflection;
@@ -19,10 +19,10 @@ class GetSingleDataUseCase<MODEL> extends UseCase{
   GetSingleDataUseCase(this._appRepository);
   
   @override
-  Future<DataState> call({required QueryParams params}) async {
+  Future<DataState> call({QueryParams? params}) async {
     _reflection = DataReflection();
     try {
-      HttpResponse response = await _appRepository.getAllData(params);
+      HttpResponse response = await _appRepository.getAllData(params!);
       if(response.response.statusCode == HttpStatus.ok){
         DataState dataModel;
         print(MODEL);
