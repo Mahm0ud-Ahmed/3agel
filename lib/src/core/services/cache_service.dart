@@ -2,6 +2,8 @@ import 'package:aagel/src/core/services/service_interface.dart';
 import 'package:hive/hive.dart';
 import 'package:path_provider/path_provider.dart';
 
+import '../../data/models/article_model.dart';
+
 
 class CacheService extends ServiceInterface {
 
@@ -13,6 +15,7 @@ class CacheService extends ServiceInterface {
   Future initialize() async {
     final appDocumentDir = await getApplicationDocumentsDirectory();
     Hive.init(appDocumentDir.path);
+    Hive.registerAdapter(ArticleModelAdapter());
   }
 
 
