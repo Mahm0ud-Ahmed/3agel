@@ -29,12 +29,13 @@ class _BookmarkPageState extends State<BookmarkPage> {
     return BlocBuilder(
       bloc: bloc,
       builder: (context, state) {
+        print(state);
         if(state is ApiDataLoaded<List<ArticleModel>?> && state.data!.isNotEmpty){
           List<ArticleModel> articles = state.data!.reversed.toList();
           _articlesNotifier.value = List.from(articles);
           return ValueListenableBuilder<List<ArticleModel>?>(
             valueListenable: _articlesNotifier,
-            builder: (context, value, child) {
+            builder: (context, List<ArticleModel>? value, child) {
               return GridView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
                 itemCount: value!.length,
@@ -44,6 +45,9 @@ class _BookmarkPageState extends State<BookmarkPage> {
                     onDelete: (article) {
                       articles.remove(article);
                       _articlesNotifier.value = List.from(articles);
+                      if(articles.isEmpty){
+                        bloc.add(GetDataStore(Constant.kBoxNameHive));
+                      }
                     },
                   );
                 },
@@ -56,8 +60,10 @@ class _BookmarkPageState extends State<BookmarkPage> {
               );
             },
           );
-        } else if(state is ApiDataLoaded && state.data!.isEmpty){
-          const Text('That not are date');
+        } else if(state is ApiDataLoaded<List<ArticleModel>?> && state.data!.isEmpty){
+          return const Center(
+            child: Text('There are not data')
+          );
         }
         return SingleChildScrollView(
           child: Column(
