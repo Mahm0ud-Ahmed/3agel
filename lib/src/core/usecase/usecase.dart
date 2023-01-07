@@ -1,8 +1,7 @@
 import 'package:aagel/src/core/utils/data_state.dart';
-import 'package:aagel/src/core/utils/query_params.dart';
 
-abstract class UseCase{
+abstract class UseCase<T>{
 
-  Future<DataState> call({required QueryParams params});
+  Future<DataState> call({T params});
   
 }
