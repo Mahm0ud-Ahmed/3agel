@@ -1,4 +1,6 @@
 import 'package:aagel/src/core/utils/data_state.dart';
+import 'package:aagel/src/data/data_sources/local/local_service.dart';
+import 'package:aagel/src/data/models/article_model.dart';
 import 'package:retrofit/dio.dart';
 import 'package:aagel/src/core/utils/query_params.dart';
 import 'package:aagel/src/domain/repositories/i_app_repository.dart';
@@ -9,8 +11,9 @@ import '../data_sources/remote/api_service.dart';
 
 class AppRepositoryImp extends IAppRepository{
   final ApiService _apiService;
+  final LocalService _localService;
 
-  AppRepositoryImp(this._apiService);
+  AppRepositoryImp(this._apiService, this._localService);
   
   @override
   Future<HttpResponse> getAllData(QueryParams params) async {
@@ -42,7 +45,7 @@ class AppRepositoryImp extends IAppRepository{
   }
 
   @override
-  Future<DataState> getCacheData() {
-    throw UnimplementedError();
+  Future<List<ArticleModel>> getCacheData() async{
+    return await _localService.getAllArticle();
   }
 }
