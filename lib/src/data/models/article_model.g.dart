@@ -65,7 +65,8 @@ class ArticleModelAdapter extends TypeAdapter<ArticleModel> {
 // JsonSerializableGenerator
 // **************************************************************************
 
-ArticleModel _$ArticleModelFromJson(Map<String, dynamic> json) => ArticleModel(
+_$_ArticleModel _$$_ArticleModelFromJson(Map<String, dynamic> json) =>
+    _$_ArticleModel(
       source: json['source'] as Map<String, dynamic>?,
       author: json['author'] as String?,
       title: json['title'] as String?,
@@ -76,7 +77,7 @@ ArticleModel _$ArticleModelFromJson(Map<String, dynamic> json) => ArticleModel(
       content: json['content'] as String?,
     );
 
-Map<String, dynamic> _$ArticleModelToJson(ArticleModel instance) =>
+Map<String, dynamic> _$$_ArticleModelToJson(_$_ArticleModel instance) =>
     <String, dynamic>{
       'source': instance.source,
       'author': instance.author,

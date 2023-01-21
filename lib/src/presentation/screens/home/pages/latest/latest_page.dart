@@ -1,3 +1,4 @@
+import 'package:aagel/src/core/utils/constant.dart';
 import 'package:aagel/src/presentation/controllers/search_controller.dart';
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
@@ -28,6 +29,7 @@ class _LatestPageState extends State<LatestPage> {
   NewsCategory? category;
 
   final QueryParams _query = QueryParams(
+    endpoint: Constant.kRouteTopHeadline,
     category: NewsCategory.business.category,
     pageSize: 10,
   );
@@ -36,8 +38,7 @@ class _LatestPageState extends State<LatestPage> {
   void initState() {
     super.initState();
     _carouselBloc = ApiDataBloc<ArticleModel>(
-        query:
-            QueryParams(category: NewsCategory.general.category, pageSize: 5),
+        query: QueryParams(endpoint: Constant.kRouteTopHeadline, category: NewsCategory.general.category, pageSize: 5),
         maxResult: 5)
       ..add(ApiDataPagination());
 

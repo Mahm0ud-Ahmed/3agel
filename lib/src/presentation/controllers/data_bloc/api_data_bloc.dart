@@ -49,24 +49,24 @@ class ApiDataBloc<MODEL> extends Bloc<ApiDataEvent, ApiDataState> {
     on<GetDataStore>((event, emit) => _getDataFromLocal(event, emit));
     on<ToggleSaveOrDelete>((event, emit) => _toggleArticle(event, emit));
 
-    query = initialQuery();
+    // query = initialQuery();
     _criteria = PaginationCriteria();
     initializeController();
   }
 
-  QueryParams initialQuery() {
-    String route = _invokeReflection.getRoute();
-    if (query == null) {
-      return QueryParams(endpoint: route);
-    } else {
-      if (query!.endpoint != null && query!.endpoint!.isNotEmpty) {
-        query!.endpoint = '$route/${query!.endpoint}';
-        return query!;
-      }
-      query!.endpoint = route;
-      return query!;
-    }
-  }
+  // QueryParams initialQuery() {
+  //   String route = _invokeReflection.getRoute();
+  //   if (query == null) {
+  //     return QueryParams(endpoint: route);
+  //   } else {
+  //     if (query!.endpoint != null && query!.endpoint!.isNotEmpty) {
+  //       query!.endpoint = '$route/${query!.endpoint}';
+  //       return query!;
+  //     }
+  //     query!.endpoint = route;
+  //     return query!;
+  //   }
+  // }
 
   initializeController() {
     controller = PagingController<int, MODEL>(

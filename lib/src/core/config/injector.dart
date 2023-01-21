@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get_it/get_it.dart';
 import 'package:aagel/src/data/data_sources/remote/api_service.dart';
 import 'package:aagel/src/data/repositories/app_repository_imp.dart';
+import 'package:hive/hive.dart';
 
 import '../../../main.reflectable.dart';
 import '../../domain/repositories/i_app_repository.dart';

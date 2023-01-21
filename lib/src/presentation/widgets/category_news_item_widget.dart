@@ -22,19 +22,17 @@ class CategoryNewsItemWidget extends StatefulWidget {
 class _CategoryNewsItemWidgetState extends State<CategoryNewsItemWidget> {
   final ApiDataBloc<ArticleModel> _bookmark = ApiDataBloc();
   late final ValueNotifier<bool> _bookmarkNotifier;
-  bool isBookmark = false;
 
   @override
   void initState() {
     super.initState();
-    _bookmarkNotifier = ValueNotifier(isBookmark);
+    _bookmarkNotifier = ValueNotifier(false);
   }
 
   @override
   void didChangeDependencies()async  {
     super.didChangeDependencies();
-    isBookmark = await _bookmark.isBookmark(widget.article.url!);
-    _bookmarkNotifier.value = isBookmark;
+    _bookmarkNotifier.value = await _bookmark.isBookmark(widget.article.url!);
   }
 
   @override
@@ -135,6 +133,7 @@ class _CategoryNewsItemWidgetState extends State<CategoryNewsItemWidget> {
                               child: ValueListenableBuilder<bool>(
                                 valueListenable: _bookmarkNotifier,
                                 builder: (context, value, child) {
+                                  _bookmark.isBookmark(widget.article.url!).then((value) => _bookmarkNotifier.value = value);
                                   return IconButton(
                                     onPressed: () async{
                                       _bookmark.add(ToggleSaveOrDelete(value, article: widget.article));

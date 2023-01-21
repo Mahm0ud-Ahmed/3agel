@@ -29,19 +29,17 @@ class _BookmarkPageState extends State<BookmarkPage> {
     return BlocBuilder(
       bloc: bloc,
       builder: (context, state) {
-        print(state);
         if(state is ApiDataLoaded<List<ArticleModel>?> && state.data!.isNotEmpty){
-          List<ArticleModel> articles = state.data!.reversed.toList();
-          _articlesNotifier.value = List.from(articles);
+          _articlesNotifier.value = List.from(state.data!.reversed.toList());
           return ValueListenableBuilder<List<ArticleModel>?>(
             valueListenable: _articlesNotifier,
-            builder: (context, List<ArticleModel>? value, child) {
+            builder: (context, List<ArticleModel>? articles, child) {
               return GridView.builder(
                 padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 12),
-                itemCount: value!.length,
+                itemCount: articles!.length,
                 itemBuilder: (context, index) {
                   return CategoryNewsItemWidget(
-                    article: value[index],
+                    article: articles[index],
                     onDelete: (article) {
                       articles.remove(article);
                       _articlesNotifier.value = List.from(articles);

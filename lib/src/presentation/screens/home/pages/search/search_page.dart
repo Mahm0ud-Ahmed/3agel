@@ -4,6 +4,7 @@ import 'package:aagel/src/core/utils/enums.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../core/config/themes/theme_manager.dart';
+import '../../../../../core/utils/constant.dart';
 import '../../../../../core/utils/query_params.dart';
 import '../../../../../data/models/article_model.dart';
 import '../../../../controllers/data_bloc/api_data_bloc.dart';
@@ -22,7 +23,7 @@ class SearchPage extends StatefulWidget {
 }
 
 class _SearchPageState extends State<SearchPage> {
-  final QueryParams _query = QueryParams(pageSize: 10);
+  final QueryParams _query = QueryParams(endpoint: Constant.kRouteTopHeadline, pageSize: 10);
   late ApiDataBloc<ArticleModel> _searchBloc;
   late final ValueNotifier<bool> _searchNotifier;
   late final ValueNotifier<NewsCategory?> _categoryNotifier;

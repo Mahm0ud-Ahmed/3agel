@@ -1,7 +1,6 @@
 import 'package:aagel/src/presentation/controllers/setting_helper.dart';
 import 'package:flutter/material.dart';
 
-import '../../../../../../core/config/l10n/generated/l10n.dart';
 import '../../../../../../core/config/themes/theme_manager.dart';
 import '../../../../../../core/utils/enums.dart';
 

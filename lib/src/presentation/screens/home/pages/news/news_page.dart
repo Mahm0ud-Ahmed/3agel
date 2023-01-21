@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../../../../../core/utils/constant.dart';
 import '../../../../../core/utils/enums.dart';
 import '../../../../../core/utils/query_params.dart';
 import '../../../../../data/models/article_model.dart';
@@ -18,6 +19,7 @@ class _NewsPageState extends State<NewsPage> {
   late final ValueNotifier<NewsCategory> _categoryListen;
 
   final QueryParams _query = QueryParams(
+    endpoint: Constant.kRouteTopHeadline,
     category: NewsCategory.business.category,
   );
 
