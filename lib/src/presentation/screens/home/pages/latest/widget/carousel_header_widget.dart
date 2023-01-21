@@ -3,7 +3,6 @@ import 'package:aagel/src/presentation/screens/home/pages/latest/widget/carousel
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../../../../../core/config/l10n/generated/l10n.dart';
-import '../../../../../../data/models/api_pagination_model.dart';
 import '../../../../../../data/models/article_model.dart';
 import '../../../../../controllers/data_bloc/api_data_bloc.dart';
 import '../../../../../widgets/custom_shimmer_widget.dart';
