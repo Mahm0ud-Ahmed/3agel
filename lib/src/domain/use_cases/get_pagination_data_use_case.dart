@@ -19,17 +19,17 @@ class GetPaginationDataUseCase<MODEL> extends UseCase<QueryParams>{
   GetPaginationDataUseCase(this._appRepository);
   
   @override
-  Future<DataState> call({QueryParams? params}) async {
+  Future<DataState<ApiPaginationModel<MODEL>?>> call({QueryParams? params}) async {
     try {
       HttpResponse response = await _appRepository.getAllData(params!);
       if(response.response.statusCode == HttpStatus.ok){
         _paginationModel = ApiPaginationModel.fromJson(response.response.data);
-          return DataSuccess(_paginationModel);
+          return DataState.success(_paginationModel);
       }else{
-        return DataFailed(ErrorHandler.handleError(response.data));
+        return DataState.failure(ErrorHandler.handleError(response.data));
       }
     } on DioError catch (error) {
-      return DataFailed(ErrorHandler.handleError(error));
+      return DataState.failure(ErrorHandler.handleError(error));
     }
   }
 }

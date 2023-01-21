@@ -23,12 +23,12 @@ class GetCollectionDataUseCase<MODEL> extends UseCase<QueryParams>{
       HttpResponse response = await _appRepository.getAllData(params!);
       if(response.response.statusCode == HttpStatus.ok){
         DataState dataModel = _reflection!.reflectResponse<MODEL>(response);
-        return DataSuccess(dataModel.data);
+        return DataState.success(dataModel);
       }else{
-        return DataFailed(ErrorHandler.handleError(response.data));
+        return DataState.failure(ErrorHandler.handleError(response.data));
       }
     } on DioError catch (error) {
-      return DataFailed(ErrorHandler.handleError(error));
+      return DataState.failure(ErrorHandler.handleError(error));
     }
   }
 }

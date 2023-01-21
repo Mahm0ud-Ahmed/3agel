@@ -89,16 +89,17 @@ class ApiDataBloc<MODEL> extends Bloc<ApiDataEvent, ApiDataState> {
     emit(const ApiDataLoading());
     passPaginationForQuery();
 
-    DataState state = await _getPaginationDataUseCase.call(params: query!);
-    if (state is DataSuccess) {
-      ApiPaginationModel<MODEL> pagination =
-          state.data as ApiPaginationModel<MODEL>;
-      emit(ApiDataLoaded<ApiPaginationModel<MODEL>>(pagination));
-      newSettingForPagination(pagination);
-    } else {
-      emit(ApiDataError(state.error!));
-      controller.error = state.error;
-    }
+    DataState<ApiPaginationModel<MODEL>?> state = await _getPaginationDataUseCase.call(params: query!);
+    state.when(
+      success: (data) {
+        emit(ApiDataLoaded<List<MODEL>?>(data?.data));
+        newSettingForPagination(data);
+      }, 
+      failure: (data) {
+        emit(ApiDataError(data!));
+        controller.error = data;
+      },
+    );
   }
 
   void passPaginationForQuery() {
@@ -106,9 +107,9 @@ class ApiDataBloc<MODEL> extends Bloc<ApiDataEvent, ApiDataState> {
     query?.pageSize ??= _criteria.getPageSize;
   }
 
-  void newSettingForPagination(ApiPaginationModel<MODEL> pagination) {
+  void newSettingForPagination(ApiPaginationModel<MODEL>? pagination) {
     _criteria.pageNumber += 1;
-    bool noMore = noMoreData(pagination);
+    bool noMore = noMoreData(pagination!);
     if (noMore) {
       controller.appendLastPage(pagination.data!);
     } else {
@@ -141,23 +142,20 @@ class ApiDataBloc<MODEL> extends Bloc<ApiDataEvent, ApiDataState> {
       emit(const ApiDataError(ErrorModel(message: 'Path Not Found')));
       return;
     }
-
-    if (state is DataSuccess) {
-      emit(ApiDataLoaded<MODEL>(state.data));
-    } else {
-      emit(ApiDataError(state.error!));
-    }
+    state.when(
+      success: (data)=> emit(ApiDataLoaded<MODEL>(data)), 
+      failure: (error) => emit(ApiDataError(error!)),
+    );
   }
 
 
   Future<void> _getDataFromLocal(GetDataStore event, Emitter<ApiDataState> emit) async{
     emit(const ApiDataLoading());
     DataState<List<ArticleModel>> data = await _getCacheLocalData();
-    if(data is DataSuccess){
-      emit(ApiDataLoaded<List<ArticleModel>?>(data.data));
-    }else{
-      emit(ApiDataError(data.error!));
-    }
+    data.when(
+      success: (data)=> emit(ApiDataLoaded<List<ArticleModel>?>(data)), 
+      failure: (error) => emit(ApiDataError(error!)),
+    );
   }
 
   void toggleArticle({required bool isBookmark, ArticleModel? articleModel}){
@@ -172,17 +170,20 @@ class ApiDataBloc<MODEL> extends Bloc<ApiDataEvent, ApiDataState> {
     }else{
       data = await _saveArticleInLocal(params: event.article);
     }
+
+    data.when(
+      success: (data)=> emit(ApiDataLoaded<bool>(data)), 
+      failure: (error) => emit(ApiDataError(error!)),
+    );
     
-    if(data is DataSuccess){
-      emit(ApiDataLoaded<bool>(data.data!));
-    }else{
-      emit(ApiDataError(data.error!));
-    }
   }
 
   Future<bool> isBookmark(String url)async {
     DataState<bool> data = await _checkInBookmark(params: url);
-    return data is DataSuccess<bool> ? data.data! : false;
+    return data.when(
+      success: (data)=> data, 
+      failure: (error) => false,
+    );
   }
 
   /* Future<void> _getDataSingle(ApiDataSingle event, Emitter<ApiDataState> emit) async{

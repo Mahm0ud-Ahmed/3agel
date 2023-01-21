@@ -15,9 +15,9 @@ class CheckInBookmark extends UseCase<String>{
   Future<DataState<bool>> call({String? params}) async{
     try {
       bool isBookmark = await _appRepository.checkArticle(params!);
-      return DataSuccess<bool>(isBookmark);
+      return DataState.success(isBookmark);
     } on HiveError catch (error) {
-      return DataFailed(ErrorHandler.handleError(error));
+      return DataState.failure(ErrorHandler.handleError(error));
     }  
   }
   

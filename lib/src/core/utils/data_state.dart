@@ -1,16 +1,9 @@
 import 'package:aagel/src/core/error/error_model.dart';
+import 'package:freezed_annotation/freezed_annotation.dart';
+part 'data_state.freezed.dart';
 
-abstract class DataState<T> {
-  final T? data;
-  final ErrorModel? error;
-
-  const DataState({this.data, this.error});
-}
-
-class DataSuccess<T> extends DataState<T> {
-  const DataSuccess(T data) : super(data: data);
-}
-
-class DataFailed<T> extends DataState<T> {
-  const DataFailed(ErrorModel? error) : super(error: error);
+@freezed
+abstract class DataState<T> with _$DataState<T>{
+  const factory DataState.success(T data) = Success<T>;
+  const factory DataState.failure(ErrorModel? data) = Failure<T>;
 }

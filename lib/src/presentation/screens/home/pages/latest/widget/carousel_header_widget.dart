@@ -21,10 +21,10 @@ class CarouselHeaderWidget extends StatelessWidget {
       child: BlocBuilder(
         bloc: carouselBloc,
         builder: (context, state) {
-          if (state is ApiDataLoaded<ApiPaginationModel<ArticleModel>> &&
-              (state.data?.data != null && state.data!.data!.isNotEmpty)) {
+          if (state is ApiDataLoaded<List<ArticleModel>?> &&
+              (state.data != null && state.data!.isNotEmpty)) {
             return CarouselItemLoadedWidget(
-              article: state.data?.data,
+              article: state.data,
               height: headerHeight(context) - 24,
             );
           } else if (state is ApiDataLoading) {

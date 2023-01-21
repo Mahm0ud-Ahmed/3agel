@@ -32,7 +32,7 @@ class DataReflection<T>{
       }
     }
 
-    return DataSuccess(data);
+    return DataState.success(data);
     
   }
 

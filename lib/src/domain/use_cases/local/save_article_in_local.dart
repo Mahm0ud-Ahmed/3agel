@@ -16,9 +16,9 @@ class SaveArticleInLocal extends UseCase<ArticleModel>{
   Future<DataState<bool>> call({ArticleModel? params}) async{
     try {
       bool isSaveSuccessfully = await _appRepository.storeLocal(params!);
-      return DataSuccess<bool>(isSaveSuccessfully);
+      return DataState.success(isSaveSuccessfully);
     } on HiveError catch (error) {
-      return DataFailed(ErrorHandler.handleError(error));
+      return DataState.failure(ErrorHandler.handleError(error));
     }  
   }
   

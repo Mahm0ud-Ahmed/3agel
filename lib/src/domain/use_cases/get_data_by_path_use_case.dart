@@ -17,18 +17,18 @@ class GetDataByPathUseCase<MODEL> extends UseCase<QueryParams>{
   GetDataByPathUseCase(this._appRepository);
   
   @override
-  Future<DataState> call({QueryParams? params}) async {
+  Future<DataState<MODEL>> call({QueryParams? params}) async {
     _reflection = DataReflection();
     try {
       HttpResponse response = await _appRepository.getShowDataByPath(params!);
       if(response.response.statusCode == HttpStatus.ok){
-        DataState dataModel = _reflection!.reflectResponse<MODEL>(response);
-        return DataSuccess(dataModel.data);
+        DataState<MODEL> dataModel = _reflection!.reflectResponse<MODEL>(response);
+        return dataModel;
       }else{
-        return DataFailed(ErrorHandler.handleError(response.data));
+        return DataState.failure(ErrorHandler.handleError(response.data));
       }
     } on DioError catch (error) {
-      return DataFailed(ErrorHandler.handleError(error));
+      return DataState.failure(ErrorHandler.handleError(error));
     }
   }
 }

@@ -16,9 +16,9 @@ class GetCacheLocalData extends UseCase<void>{
   Future<DataState<List<ArticleModel>>> call({void params}) async{
     try {
       List<ArticleModel> articles = await _appRepository.getCacheData();
-      return DataSuccess<List<ArticleModel>>(articles);
+      return DataState.success(articles);
     } on HiveError catch (error) {
-      return DataFailed(ErrorHandler.handleError(error));
+      return DataState.failure(ErrorHandler.handleError(error));
     }  
   }
   

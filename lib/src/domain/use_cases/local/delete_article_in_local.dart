@@ -15,9 +15,9 @@ class DeleteArticleInLocal extends UseCase<String>{
   Future<DataState<bool>> call({String? params}) async{
     try {
       bool isDeleteSuccessfully = await _appRepository.deleteLocal(params!);
-      return DataSuccess<bool>(isDeleteSuccessfully);
+      return DataState.success(isDeleteSuccessfully);
     } on HiveError catch (error) {
-      return DataFailed(ErrorHandler.handleError(error));
+      return DataState.failure(ErrorHandler.handleError(error));
     }  
   }
 
